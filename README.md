@@ -71,7 +71,7 @@ The free plan allows 500 builds per month.
 
 ## The audio file (R2)
 
-Bucket `meditation` · served at `https://media.josephbumbulis.com/Internal%20scan%20meditation.m4a`
+Bucket `meditation` · served at `media.josephbumbulis.com`
 
 | File | Used by |
 |---|---|

@@ -75,12 +75,15 @@
   main {
     position: relative;
     z-index: 4;
-    min-height: 100%;
+    min-height: 100vh;
+    min-height: 100svh;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 12% 12% 12% 14%;
-    max-width: 62rem;
+    max-width: 72rem;
+    margin-inline: auto;
+    padding: clamp(3rem, 8vh, 6rem) clamp(1.75rem, 5vw, 5rem)
+             clamp(4rem, 9vh, 7rem) clamp(2.25rem, 5.5vw, 5.5rem);
   }
 
   .kicker {
@@ -183,7 +186,6 @@
   }
 
   @media (max-width: 640px) {
-    main { padding: 16% 10% 18% 12%; }
     .rule { margin: 24px 0; }
     nav { flex-direction: column; gap: 18px; align-items: flex-start; }
   }

@@ -52,8 +52,10 @@
 
   main {
     position: relative; z-index: 5;
-    padding: 7% 10% 9% 12%;
-    max-width: 62rem;
+    max-width: 72rem;
+    margin-inline: auto;
+    padding: clamp(3rem, 7vh, 5rem) clamp(1.75rem, 5vw, 5rem)
+             clamp(4rem, 8vh, 6rem) clamp(2.25rem, 5.5vw, 5.5rem);
   }
 
   .kicker {
@@ -198,7 +200,6 @@
   }
 
   @media (max-width: 800px) {
-    main { padding: 12% 8% 14% 10%; }
     .columns { grid-template-columns: 1fr; gap: 2.5rem; }
     .rule { margin: 22px 0 26px; }
     footer { flex-direction: column; gap: 18px; }
@@ -284,7 +285,7 @@
      to hide the label entirely.
      ══════════════════════════════════════════════════ */
   var VIDEO_ID = 'jD7FhFRQEOA';
-  var RUNTIME  = '5.5 minutes';
+  var RUNTIME = '5.5 minutes';
 
   var frame   = document.getElementById('frame');
   var thumb   = document.getElementById('thumb');

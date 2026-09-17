@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>A Guided Practice — Joseph Bumbulis</title>
 <meta name="description" content="Ten minutes to come back to yourself. A guided practice from Wisdom Integration Coaching.">
+<meta name="theme-color" content="#1A2E28">
 
 <meta property="og:title" content="Ten minutes to come back to yourself">
 <meta property="og:description" content="A guided practice. Headphones help.">
@@ -25,11 +26,17 @@
     --display: 'Cormorant Garamond', Georgia, serif;
     --sans:    'Barlow', system-ui, -apple-system, sans-serif;
 
-    --dial: 240px;
+    --dial: clamp(168px, 20vw, 248px);
+
+    /* edge padding — left is larger to clear the pink bar */
+    --pad-y:     clamp(3rem, 7vh, 5rem);
+    --pad-right: clamp(1.75rem, 5vw, 5rem);
+    --pad-left:  clamp(2.25rem, 5.5vw, 5.5rem);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html, body { height: 100%; }
+
+  html { -webkit-text-size-adjust: 100%; }
 
   body {
     background: var(--green-deep);
@@ -53,28 +60,45 @@
   .tri {
     position: fixed; bottom: 0; right: 0; width: 0; height: 0;
     border-style: solid;
-    border-width: 0 0 clamp(130px, 26vw, 220px) clamp(130px, 26vw, 220px);
+    border-width: 0 0 clamp(110px, 22vw, 220px) clamp(110px, 22vw, 220px);
     border-color: transparent transparent var(--pink) transparent;
     opacity: 0.06; pointer-events: none; z-index: 1;
   }
 
+  /* ───────── layout shell ─────────
+     min-height uses svh so mobile browser chrome doesn't
+     push content off-screen. margin-block:auto centres the
+     block without clipping it when it outgrows the viewport. */
+
   main {
     position: relative; z-index: 5;
-    min-height: 100%;
-    display: flex; flex-direction: column; justify-content: center;
-    padding: 9% 12% 10% 14%;
-    max-width: 46rem;
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    max-width: 76rem;
+    margin-inline: auto;
+    padding: var(--pad-y) var(--pad-right) calc(var(--pad-y) + 1rem) var(--pad-left);
   }
 
-  /* ─── dial ─── */
+  .layout {
+    margin-block: auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: clamp(2.5rem, 5vw, 4.5rem);
+    align-items: center;
+  }
 
-  .dial-wrap { display: flex; justify-content: flex-start; margin-bottom: 3rem; }
+  .col-text { min-width: 0; }
+
+  /* ───────── dial ───────── */
 
   .dial {
     position: relative;
     width: var(--dial); height: var(--dial);
     background: none; border: 0; padding: 0;
     cursor: pointer; border-radius: 50%; color: inherit;
+    flex-shrink: 0;
   }
   .dial:focus-visible { outline: 1px solid var(--pink); outline-offset: 12px; }
 
@@ -97,43 +121,44 @@
   .arc { stroke: var(--pink); stroke-width: 2.5; opacity: 0.85; transition: stroke-dashoffset 0.15s linear; }
 
   .glyph { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none; }
-  .glyph svg { width: 32px; height: 32px; fill: var(--sand); transition: fill 0.25s ease; }
+  .glyph svg { width: clamp(26px, 3.2vw, 34px); height: clamp(26px, 3.2vw, 34px); fill: var(--sand); transition: fill 0.25s ease; }
   .dial:hover .glyph svg { fill: var(--pink); }
 
-  /* ─── text ─── */
+  /* ───────── type ───────── */
 
   .kicker {
     font-family: var(--sans);
-    font-size: clamp(8px, 1.8vw, 10px);
+    font-size: clamp(8px, 1.4vw, 10px);
     font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase;
-    color: var(--pink); margin-bottom: 20px;
+    color: var(--pink); margin-bottom: 18px;
   }
 
   h1 {
     font-family: var(--display); font-weight: 300;
-    font-size: clamp(28px, 6vw, 46px);
+    font-size: clamp(30px, 4.6vw, 46px);
     line-height: 1.16; letter-spacing: -0.005em;
     color: var(--sand);
+    text-wrap: balance;
   }
   h1 em { font-style: italic; color: var(--pink); }
 
-  .rule { width: 48px; height: 1px; background: var(--pink); opacity: 0.6; margin: 26px 0; }
+  .rule { width: 48px; height: 1px; background: var(--pink); opacity: 0.6; margin: clamp(20px, 2.5vw, 28px) 0; }
 
   .body {
     font-family: var(--display); font-weight: 300;
-    font-size: clamp(17px, 2.4vw, 22px);
-    line-height: 1.7;
-    color: rgba(232, 220, 200, 0.8);
-    max-width: 29rem;
+    font-size: clamp(17px, 1.6vw, 21px);
+    line-height: 1.72;
+    color: rgba(232, 220, 200, 0.82);
+    max-width: 32ch;
   }
-  .body em { font-style: italic; color: rgba(232, 220, 200, 0.95); }
+  .body em { font-style: italic; color: rgba(232, 220, 200, 0.96); }
 
-  /* ─── scrub + meta ─── */
+  /* ───────── scrub + meta ───────── */
 
   .scrub {
     display: block; position: relative;
-    width: 100%; max-width: 29rem; height: 24px;
-    margin: 2.25rem 0 1.25rem;
+    width: 100%; max-width: 30rem; height: 26px;
+    margin: clamp(1.75rem, 3vw, 2.5rem) 0 1rem;
     background: none; border: 0; padding: 0; cursor: pointer;
   }
   .scrub::before {
@@ -150,10 +175,11 @@
   .scrub:focus-visible { outline: 1px solid var(--pink); outline-offset: 6px; }
 
   .meta {
-    display: flex; align-items: baseline; gap: 2rem;
-    max-width: 29rem;
+    display: flex; align-items: baseline;
+    gap: 1.25rem 2rem; flex-wrap: wrap;
+    max-width: 30rem;
     font-family: var(--sans);
-    font-size: clamp(9px, 1.9vw, 11px);
+    font-size: clamp(9px, 1.3vw, 11px);
     font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase;
     color: rgba(232, 220, 200, 0.5);
   }
@@ -170,33 +196,48 @@
 
   .notice {
     font-family: var(--sans);
-    font-size: clamp(10px, 2vw, 12px);
-    font-weight: 400; letter-spacing: 0.1em; line-height: 1.7;
-    color: var(--pink); max-width: 29rem; margin-top: 1.5rem;
+    font-size: clamp(10px, 1.4vw, 12px);
+    font-weight: 400; letter-spacing: 0.08em; line-height: 1.7;
+    color: var(--pink); max-width: 30rem; margin-top: 1.25rem;
   }
   .notice[hidden] { display: none; }
 
   footer {
-    margin-top: 3.5rem;
+    margin-top: clamp(2.5rem, 5vw, 3.75rem);
     display: flex; flex-wrap: wrap; align-items: baseline;
-    gap: 12px 2rem;
+    gap: 14px 2rem;
     font-family: var(--sans);
-    font-size: clamp(8px, 1.8vw, 10px);
+    font-size: clamp(8px, 1.3vw, 10px);
     font-weight: 400; letter-spacing: 0.25em; text-transform: uppercase;
   }
   .mark { font-weight: 300; letter-spacing: 0.45em; color: rgba(232, 220, 200, 0.26); }
 
+  /* ───────── phone / narrow ───────── */
+
+  @media (max-width: 880px) {
+    .layout {
+      grid-template-columns: minmax(0, 1fr);
+      gap: clamp(2rem, 6vw, 2.75rem);
+      align-items: start;
+      justify-items: start;
+    }
+    h1 { font-size: clamp(30px, 8vw, 40px); }
+    .body { font-size: clamp(17px, 4.4vw, 20px); max-width: 34ch; }
+    .kicker { font-size: clamp(8px, 2.4vw, 10px); }
+    .meta { font-size: clamp(9px, 2.6vw, 11px); gap: 1rem 1.75rem; }
+    footer { font-size: clamp(8px, 2.4vw, 10px); gap: 16px 1.75rem; }
+    .glyph svg { width: 28px; height: 28px; }
+  }
+
+  /* very short landscape phones: stop forcing full height */
+  @media (max-height: 520px) and (max-width: 880px) {
+    main { min-height: 0; }
+    :root { --dial: 140px; }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .dial[data-state="playing"] .breath { animation: none; transform: scale(1); }
     .arc, .scrub-fill, .breath, .glyph svg, a.quiet { transition: none; }
-  }
-
-  @media (max-width: 680px) {
-    :root { --dial: 190px; }
-    main { padding: 14% 9% 16% 11%; }
-    .dial-wrap { margin-bottom: 2.25rem; }
-    .meta { flex-direction: column; gap: 1rem; align-items: flex-start; }
-    footer { flex-direction: column; gap: 18px; }
   }
 </style>
 </head>
@@ -208,50 +249,54 @@
 <div class="grain"></div>
 
 <main>
+  <div class="layout">
 
-  <div class="dial-wrap">
     <button class="dial" id="dial" data-state="paused" aria-label="Play" aria-pressed="false">
       <span class="breath"></span>
-      <svg class="rings" viewBox="0 0 240 240" aria-hidden="true">
-        <circle class="track" cx="120" cy="120" r="116"></circle>
-        <circle class="arc" id="arc" cx="120" cy="120" r="116"></circle>
+      <svg class="rings" viewBox="0 0 248 248" aria-hidden="true">
+        <circle class="track" cx="124" cy="124" r="120"></circle>
+        <circle class="arc" id="arc" cx="124" cy="124" r="120"></circle>
       </svg>
       <span class="glyph" id="glyph">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>
       </span>
     </button>
+
+    <div class="col-text">
+
+      <p class="kicker">A Guided Meditation Practice</p>
+
+      <h1>Ten minutes to come back to <em>yourself.</em></h1>
+
+      <div class="rule"></div>
+
+      <p class="body">
+        Find somewhere you won't be interrupted. Sit or lie down. Let the breath
+        be slower than feels necessary, and let whatever is here be here.
+        <em>Nothing in you needs fixing.</em>
+      </p>
+
+      <button class="scrub" id="scrub" aria-label="Seek">
+        <span class="scrub-fill" id="scrubFill"></span>
+      </button>
+
+      <p class="meta">
+        <span class="clock" id="clock">0:00 / --:--</span>
+        <a class="quiet" id="dl" href="#" download>Download</a>
+      </p>
+
+      <p class="notice" id="notice" hidden>
+        The audio didn't load. Check the media URL in this page's source.
+      </p>
+
+      <footer>
+        <a class="quiet" href="/breathwork">Breathwork practice</a>
+        <span class="mark">Joseph Bumbulis</span>
+      </footer>
+
+    </div>
+
   </div>
-
-  <p class="kicker">A Guided Meditation Practice</p>
-
-  <h1>Ten minutes to come<br>back to <em>yourself.</em></h1>
-
-  <div class="rule"></div>
-
-  <p class="body">
-    Find somewhere you won't be interrupted. Sit or lie down. Let the breath
-    be slower than feels necessary, and let whatever is here be here.
-    <em>Nothing in you needs fixing.</em>
-  </p>
-
-  <button class="scrub" id="scrub" aria-label="Seek">
-    <span class="scrub-fill" id="scrubFill"></span>
-  </button>
-
-  <p class="meta">
-    <span class="clock" id="clock">0:00 / --:--</span>
-    <a class="quiet" id="dl" href="#" download>Download</a>
-  </p>
-
-  <p class="notice" id="notice" hidden>
-    The audio didn't load. Check the media host and file name below.
-  </p>
-
-  <footer>
-    <a class="quiet" href="/breathwork">Breathwork practice</a>
-    <span class="mark">Joseph Bumbulis</span>
-  </footer>
-
 </main>
 
 <audio id="audio" preload="metadata"></audio>
@@ -261,8 +306,8 @@
 
   /* ══════════════════════════════════════════════════
      MEDIA SOURCE — the only line you change if the
-     file moves. Use a full R2 URL, or "meditation.m4a"
-     if the file sits beside this page.
+     file moves. This is the R2 custom domain, not the
+     bucket name; renaming the bucket changes nothing.
      ══════════════════════════════════════════════════ */
   var AUDIO_SRC = 'https://media.josephbumbulis.com/Internal%20scan%20meditation.m4a';
 
@@ -279,7 +324,7 @@
   audio.src = AUDIO_SRC;
   dl.href = AUDIO_SRC;
 
-  var R = 116;
+  var R = 120;
   var C = 2 * Math.PI * R;
   arc.style.strokeDasharray = C;
   arc.style.strokeDashoffset = C;
@@ -332,13 +377,30 @@
   audio.addEventListener('ended', function () { audio.currentTime = 0; paint(); });
   audio.addEventListener('error', function () { notice.hidden = false; });
 
-  scrub.addEventListener('click', function (e) {
+  // Pointer events cover mouse and touch, so dragging the
+  // scrub line works on a phone as well as clicking on desktop.
+  function seek(clientX) {
     if (!isFinite(audio.duration) || audio.duration <= 0) return;
     var box = scrub.getBoundingClientRect();
-    var x = (e.clientX - box.left) / box.width;
+    var x = (clientX - box.left) / box.width;
     audio.currentTime = Math.min(Math.max(x, 0), 1) * audio.duration;
     paint();
+  }
+
+  var dragging = false;
+  scrub.addEventListener('pointerdown', function (e) {
+    dragging = true;
+    scrub.setPointerCapture(e.pointerId);
+    seek(e.clientX);
   });
+  scrub.addEventListener('pointermove', function (e) {
+    if (dragging) { seek(e.clientX); }
+  });
+  scrub.addEventListener('pointerup', function (e) {
+    dragging = false;
+    if (scrub.hasPointerCapture(e.pointerId)) { scrub.releasePointerCapture(e.pointerId); }
+  });
+  scrub.addEventListener('pointercancel', function () { dragging = false; });
 
   document.addEventListener('keydown', function (e) {
     if (e.target && /^(INPUT|TEXTAREA)$/.test(e.target.tagName)) return;
