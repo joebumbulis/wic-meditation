@@ -12,6 +12,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://i.ytimg.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
@@ -27,7 +28,6 @@
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
 
   body {
     background: var(--green-deep);
@@ -73,7 +73,7 @@
 
   .rule { width: 48px; height: 1px; background: var(--pink); opacity: 0.6; margin: 26px 0 32px; }
 
-  /* ─── video ─── */
+  /* ─── video frame ─── */
 
   .frame {
     position: relative;
@@ -85,24 +85,29 @@
     margin-bottom: 2.5rem;
   }
 
-  .frame video {
+  .frame iframe {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    border: 0;
+    display: block;
+  }
+
+  .thumb {
     position: absolute; inset: 0;
     width: 100%; height: 100%;
     object-fit: cover;
     display: block;
-    background: #0F1E19;
+    z-index: 1;
   }
 
   .veil {
     position: absolute; inset: 0;
     display: flex; align-items: center; justify-content: center;
-    background: linear-gradient(180deg, rgba(26,46,40,0.35) 0%, rgba(26,46,40,0.62) 100%);
+    background: linear-gradient(180deg, rgba(26,46,40,0.42) 0%, rgba(26,46,40,0.68) 100%);
     border: 0;
     cursor: pointer;
-    transition: opacity 0.4s ease, visibility 0.4s ease;
     z-index: 2;
   }
-  .veil[hidden] { opacity: 0; visibility: hidden; display: flex; pointer-events: none; }
   .veil:focus-visible { outline: 1px solid var(--pink); outline-offset: -6px; }
 
   .veil .ring {
@@ -127,9 +132,8 @@
     color: rgba(232, 220, 200, 0.7);
     z-index: 3;
     pointer-events: none;
-    transition: opacity 0.4s ease;
   }
-  .runtime[hidden] { opacity: 0; display: block; }
+  .runtime:empty { display: none; }
 
   /* ─── prose ─── */
 
@@ -167,15 +171,6 @@
     color: rgba(232, 220, 200, 0.68);
   }
 
-  .notice {
-    font-family: var(--sans);
-    font-size: clamp(10px, 2vw, 12px);
-    font-weight: 400; letter-spacing: 0.1em; line-height: 1.7;
-    color: var(--pink);
-    margin-top: 1.5rem;
-  }
-  .notice[hidden] { display: none; }
-
   footer {
     margin-top: 4.5rem;
     padding-top: 2rem;
@@ -199,8 +194,7 @@
   .mark { font-weight: 300; letter-spacing: 0.45em; color: rgba(232, 220, 200, 0.26); margin-left: auto; }
 
   @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-    .veil, .veil .ring, .veil .ring svg, .runtime, a.quiet { transition: none; }
+    .veil .ring, .veil .ring svg, a.quiet { transition: none; }
   }
 
   @media (max-width: 800px) {
@@ -226,14 +220,14 @@
 
   <div class="rule"></div>
 
-  <div class="frame">
-    <video id="video" preload="metadata" playsinline poster="" aria-label="Guided breathwork practice"></video>
-    <button class="veil" id="veil" aria-label="Play the practice">
+  <div class="frame" id="frame">
+    <img class="thumb" id="thumb" alt="" aria-hidden="true">
+    <button class="veil" id="veil" aria-label="Play the breathwork practice">
       <span class="ring">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>
       </span>
     </button>
-    <span class="runtime" id="runtime">--:--</span>
+    <span class="runtime" id="runtime"></span>
   </div>
 
   <div class="columns">
@@ -267,13 +261,9 @@
 
   </div>
 
-  <p class="notice" id="notice" hidden>
-    The video didn't load. Check the media host and file name in this page's source.
-  </p>
-
   <footer>
     <a class="quiet" href="/">Guided meditation</a>
-    <a class="quiet" id="dl" href="#" download>Download the video</a>
+    <a class="quiet" id="yt" href="#" target="_blank" rel="noopener">Watch on YouTube</a>
     <span class="mark">Joseph Bumbulis</span>
   </footer>
 
@@ -283,52 +273,50 @@
 (function () {
 
   /* ══════════════════════════════════════════════════
-     MEDIA SOURCE — the only lines you change if the
-     files move. POSTER is optional; leave it empty
-     and the first frame is used instead.
-     ══════════════════════════════════════════════════ */
-  var VIDEO_SRC = 'https://media.josephbumbulis.com/breathwork.mp4';
-  var POSTER    = 'https://media.josephbumbulis.com/breathwork-poster.jpg';
+     YOUTUBE VIDEO — the only lines you change.
 
-  var video   = document.getElementById('video');
+     VIDEO_ID is the part after "v=" in a normal
+     YouTube URL, or after the slash on a youtu.be link:
+       youtube.com/watch?v=dQw4w9WgXcQ  →  dQw4w9WgXcQ
+       youtu.be/dQw4w9WgXcQ             →  dQw4w9WgXcQ
+
+     RUNTIME is optional display text. Leave it as ''
+     to hide the label entirely.
+     ══════════════════════════════════════════════════ */
+  var VIDEO_ID = 'jD7FhFRQEOA';
+  var RUNTIME  = '5.5 minutes';
+
+  var frame   = document.getElementById('frame');
+  var thumb   = document.getElementById('thumb');
   var veil    = document.getElementById('veil');
   var runtime = document.getElementById('runtime');
-  var notice  = document.getElementById('notice');
-  var dl      = document.getElementById('dl');
+  var yt      = document.getElementById('yt');
 
-  video.src = VIDEO_SRC;
-  if (POSTER) { video.poster = POSTER; }
-  dl.href = VIDEO_SRC;
+  runtime.textContent = RUNTIME;
+  yt.href = 'https://www.youtube.com/watch?v=' + VIDEO_ID;
 
-  function fmt(s) {
-    if (!isFinite(s) || s < 0) return '--:--';
-    var m = Math.floor(s / 60);
-    var r = Math.floor(s % 60);
-    return m + ':' + (r < 10 ? '0' : '') + r;
-  }
-
-  video.addEventListener('loadedmetadata', function () {
-    runtime.textContent = fmt(video.duration);
+  // YouTube's own still. maxres doesn't exist for every video,
+  // so fall back to hqdefault, which always does.
+  thumb.src = 'https://i.ytimg.com/vi/' + VIDEO_ID + '/maxresdefault.jpg';
+  thumb.addEventListener('error', function handle() {
+    thumb.removeEventListener('error', handle);
+    thumb.src = 'https://i.ytimg.com/vi/' + VIDEO_ID + '/hqdefault.jpg';
   });
 
-  video.addEventListener('error', function () {
-    notice.hidden = false;
-    veil.hidden = true;
-  });
-
+  // Nothing from YouTube loads until this is clicked —
+  // no iframe, no cookies, no tracking for people who don't watch.
   veil.addEventListener('click', function () {
-    // Hand over to native controls once playing: reliable fullscreen,
-    // volume, captions and AirPlay without rebuilding them.
-    video.controls = true;
-    var r = video.play();
-    if (r && r.catch) {
-      r.catch(function () { video.controls = true; });
-    }
-  });
+    var iframe = document.createElement('iframe');
+    iframe.src = 'https://www.youtube-nocookie.com/embed/' + VIDEO_ID +
+                 '?autoplay=1&rel=0&playsinline=1';
+    iframe.title = 'Guided breathwork practice';
+    iframe.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share';
+    iframe.allowFullscreen = true;
 
-  video.addEventListener('play', function () {
-    veil.hidden = true;
-    runtime.hidden = true;
+    thumb.remove();
+    veil.remove();
+    runtime.remove();
+    frame.appendChild(iframe);
   });
 
 })();

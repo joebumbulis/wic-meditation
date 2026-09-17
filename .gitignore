@@ -1,0 +1,22 @@
+# Media is hosted on R2 and YouTube, never in git
+*.m4a
+*.mp3
+*.mp4
+*.mov
+*.wav
+*.aac
+*.webm
+
+# macOS
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+# Editors
+.vscode/
+.idea/
+*.swp
+
+# Node, if a build step ever appears
+node_modules/
