@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Breathwork — Joseph Bumbulis</title>
+<meta name="description" content="A guided breathwork practice you can follow at home.">
+
+<meta property="og:title" content="A breathwork practice you can follow">
+<meta property="og:description" content="Lie down. Give it the full length. Have water nearby.">
+<meta property="og:type" content="video.other">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --green:      #2D4A3E;
+    --green-deep: #1A2E28;
+    --sand:       #E8DCC8;
+    --cream:      #F5F0E8;
+    --pink:       #FF3D8A;
+
+    --display: 'Cormorant Garamond', Georgia, serif;
+    --sans:    'Barlow', system-ui, -apple-system, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--green-deep);
+    color: var(--sand);
+    font-family: var(--display);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  .grain {
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.055'/%3E%3C/svg%3E");
+    background-size: 180px;
+    opacity: 0.45;
+    pointer-events: none;
+    z-index: 3;
+  }
+
+  .accent-v { position: fixed; left: 0; top: 0; bottom: 0; width: 5px; background: var(--pink); z-index: 4; }
+  .accent-h { position: fixed; bottom: 0; left: 0; right: 0; height: 5px; background: linear-gradient(90deg, var(--pink), transparent); z-index: 4; }
+
+  main {
+    position: relative; z-index: 5;
+    padding: 7% 10% 9% 12%;
+    max-width: 62rem;
+  }
+
+  .kicker {
+    font-family: var(--sans);
+    font-size: clamp(8px, 1.8vw, 10px);
+    font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase;
+    color: var(--pink); margin-bottom: 20px;
+  }
+
+  h1 {
+    font-family: var(--display); font-weight: 300;
+    font-size: clamp(28px, 6vw, 46px);
+    line-height: 1.16; letter-spacing: -0.005em;
+    color: var(--sand);
+  }
+  h1 em { font-style: italic; color: var(--pink); }
+
+  .rule { width: 48px; height: 1px; background: var(--pink); opacity: 0.6; margin: 26px 0 32px; }
+
+  /* ─── video ─── */
+
+  .frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #0F1E19;
+    overflow: hidden;
+    border: 1px solid rgba(232, 220, 200, 0.1);
+    margin-bottom: 2.5rem;
+  }
+
+  .frame video {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    background: #0F1E19;
+  }
+
+  .veil {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(180deg, rgba(26,46,40,0.35) 0%, rgba(26,46,40,0.62) 100%);
+    border: 0;
+    cursor: pointer;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+    z-index: 2;
+  }
+  .veil[hidden] { opacity: 0; visibility: hidden; display: flex; pointer-events: none; }
+  .veil:focus-visible { outline: 1px solid var(--pink); outline-offset: -6px; }
+
+  .veil .ring {
+    width: clamp(78px, 13vw, 110px);
+    height: clamp(78px, 13vw, 110px);
+    border: 1px solid rgba(232, 220, 200, 0.45);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    transition: border-color 0.3s ease, transform 0.4s cubic-bezier(0.22,0.61,0.36,1);
+  }
+  .veil:hover .ring { border-color: var(--pink); transform: scale(1.06); }
+  .veil .ring svg { width: 28px; height: 28px; fill: var(--sand); margin-left: 4px; transition: fill 0.3s ease; }
+  .veil:hover .ring svg { fill: var(--pink); }
+
+  .runtime {
+    position: absolute;
+    left: 0; bottom: 0;
+    padding: 14px 18px;
+    font-family: var(--sans);
+    font-size: clamp(8px, 1.8vw, 10px);
+    font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase;
+    color: rgba(232, 220, 200, 0.7);
+    z-index: 3;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+  }
+  .runtime[hidden] { opacity: 0; display: block; }
+
+  /* ─── prose ─── */
+
+  .columns {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+    gap: 3.5rem;
+    align-items: start;
+  }
+
+  .body {
+    font-family: var(--display); font-weight: 300;
+    font-size: clamp(17px, 2.2vw, 21px);
+    line-height: 1.75;
+    color: rgba(232, 220, 200, 0.82);
+  }
+  .body p + p { margin-top: 1.4rem; }
+  .body em { font-style: italic; color: rgba(232, 220, 200, 0.96); }
+
+  .aside {
+    border-left: 3px solid rgba(255, 61, 138, 0.7);
+    padding: 4px 0 4px 22px;
+  }
+  .aside .label {
+    font-family: var(--sans);
+    font-size: clamp(8px, 1.8vw, 10px);
+    font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--pink);
+    margin-bottom: 14px;
+  }
+  .aside p {
+    font-family: var(--display); font-weight: 300;
+    font-size: clamp(15px, 2vw, 18px);
+    line-height: 1.7;
+    color: rgba(232, 220, 200, 0.68);
+  }
+
+  .notice {
+    font-family: var(--sans);
+    font-size: clamp(10px, 2vw, 12px);
+    font-weight: 400; letter-spacing: 0.1em; line-height: 1.7;
+    color: var(--pink);
+    margin-top: 1.5rem;
+  }
+  .notice[hidden] { display: none; }
+
+  footer {
+    margin-top: 4.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(232, 220, 200, 0.1);
+    display: flex; flex-wrap: wrap; align-items: baseline;
+    gap: 14px 2.5rem;
+    font-family: var(--sans);
+    font-size: clamp(8px, 1.8vw, 10px);
+    font-weight: 400; letter-spacing: 0.25em; text-transform: uppercase;
+  }
+
+  a.quiet {
+    color: rgba(232, 220, 200, 0.5);
+    text-decoration: none;
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgba(255, 61, 138, 0.35);
+    transition: color 0.25s ease, border-color 0.25s ease;
+  }
+  a.quiet:hover, a.quiet:focus-visible { color: var(--sand); border-bottom-color: var(--pink); }
+
+  .mark { font-weight: 300; letter-spacing: 0.45em; color: rgba(232, 220, 200, 0.26); margin-left: auto; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .veil, .veil .ring, .veil .ring svg, .runtime, a.quiet { transition: none; }
+  }
+
+  @media (max-width: 800px) {
+    main { padding: 12% 8% 14% 10%; }
+    .columns { grid-template-columns: 1fr; gap: 2.5rem; }
+    .rule { margin: 22px 0 26px; }
+    footer { flex-direction: column; gap: 18px; }
+    .mark { margin-left: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="accent-v"></div>
+<div class="accent-h"></div>
+<div class="grain"></div>
+
+<main>
+
+  <p class="kicker">Breathwork</p>
+
+  <h1>A practice you can<br>follow all the way <em>down.</em></h1>
+
+  <div class="rule"></div>
+
+  <div class="frame">
+    <video id="video" preload="metadata" playsinline poster="" aria-label="Guided breathwork practice"></video>
+    <button class="veil" id="veil" aria-label="Play the practice">
+      <span class="ring">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>
+      </span>
+    </button>
+    <span class="runtime" id="runtime">--:--</span>
+  </div>
+
+  <div class="columns">
+
+    <div class="body">
+      <p>
+        Watch it through once before you practice, so you know where it goes.
+        When you're ready, lie down somewhere you can be loud, put something
+        over your eyes, and follow the breath rather than managing it.
+      </p>
+      <p>
+        Things will move. Your hands may tingle, your jaw may shake, you may
+        find yourself crying without a story attached. <em>None of that is
+        going wrong.</em> Stay with the breath and let it finish what it started.
+      </p>
+      <p>
+        Give it the full length. The part most people skip is the stillness at
+        the end, and that's where the integration actually happens.
+      </p>
+    </div>
+
+    <div class="aside">
+      <p class="label">Before you begin</p>
+      <p>
+        Don't practice while driving, standing, or in water. If you're pregnant,
+        or living with a cardiovascular condition, epilepsy, glaucoma, or
+        significant psychiatric history, talk to your doctor before you try this.
+        Have water nearby, and somewhere soft to land.
+      </p>
+    </div>
+
+  </div>
+
+  <p class="notice" id="notice" hidden>
+    The video didn't load. Check the media host and file name in this page's source.
+  </p>
+
+  <footer>
+    <a class="quiet" href="/">Guided meditation</a>
+    <a class="quiet" id="dl" href="#" download>Download the video</a>
+    <span class="mark">Joseph Bumbulis</span>
+  </footer>
+
+</main>
+
+<script>
+(function () {
+
+  /* ══════════════════════════════════════════════════
+     MEDIA SOURCE — the only lines you change if the
+     files move. POSTER is optional; leave it empty
+     and the first frame is used instead.
+     ══════════════════════════════════════════════════ */
+  var VIDEO_SRC = 'https://media.josephbumbulis.com/breathwork.mp4';
+  var POSTER    = 'https://media.josephbumbulis.com/breathwork-poster.jpg';
+
+  var video   = document.getElementById('video');
+  var veil    = document.getElementById('veil');
+  var runtime = document.getElementById('runtime');
+  var notice  = document.getElementById('notice');
+  var dl      = document.getElementById('dl');
+
+  video.src = VIDEO_SRC;
+  if (POSTER) { video.poster = POSTER; }
+  dl.href = VIDEO_SRC;
+
+  function fmt(s) {
+    if (!isFinite(s) || s < 0) return '--:--';
+    var m = Math.floor(s / 60);
+    var r = Math.floor(s % 60);
+    return m + ':' + (r < 10 ? '0' : '') + r;
+  }
+
+  video.addEventListener('loadedmetadata', function () {
+    runtime.textContent = fmt(video.duration);
+  });
+
+  video.addEventListener('error', function () {
+    notice.hidden = false;
+    veil.hidden = true;
+  });
+
+  veil.addEventListener('click', function () {
+    // Hand over to native controls once playing: reliable fullscreen,
+    // volume, captions and AirPlay without rebuilding them.
+    video.controls = true;
+    var r = video.play();
+    if (r && r.catch) {
+      r.catch(function () { video.controls = true; });
+    }
+  });
+
+  video.addEventListener('play', function () {
+    veil.hidden = true;
+    runtime.hidden = true;
+  });
+
+})();
+</script>
+
+</body>
+</html>

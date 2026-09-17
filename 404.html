@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Not here — Joseph Bumbulis</title>
+<meta name="robots" content="noindex">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --green:      #2D4A3E;
+    --green-deep: #1A2E28;
+    --sand:       #E8DCC8;
+    --cream:      #F5F0E8;
+    --pink:       #FF3D8A;
+
+    --display: 'Cormorant Garamond', Georgia, serif;
+    --sans:    'Barlow', system-ui, -apple-system, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body { height: 100%; }
+
+  body {
+    background: var(--green-deep);
+    color: var(--sand);
+    font-family: var(--display);
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  .grain {
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.055'/%3E%3C/svg%3E");
+    background-size: 180px;
+    opacity: 0.45;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .accent-v {
+    position: fixed;
+    left: 0; top: 0; bottom: 0;
+    width: 5px;
+    background: var(--pink);
+    z-index: 3;
+  }
+
+  .accent-h {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--pink), transparent);
+    z-index: 3;
+  }
+
+  .tri {
+    position: fixed;
+    bottom: 0; right: 0;
+    width: 0; height: 0;
+    border-style: solid;
+    border-width: 0 0 clamp(140px, 30vw, 260px) clamp(140px, 30vw, 260px);
+    border-color: transparent transparent var(--pink) transparent;
+    opacity: 0.06;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  main {
+    position: relative;
+    z-index: 4;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 12% 12% 12% 14%;
+    max-width: 62rem;
+  }
+
+  .kicker {
+    font-family: var(--sans);
+    font-size: clamp(8px, 1.8vw, 10px);
+    font-weight: 500;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--pink);
+    margin-bottom: 22px;
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-weight: 300;
+    font-size: clamp(34px, 7.5vw, 62px);
+    line-height: 1.12;
+    color: var(--sand);
+    letter-spacing: -0.005em;
+  }
+  h1 em { font-style: italic; color: var(--pink); }
+
+  .rule {
+    width: 48px;
+    height: 1px;
+    background: var(--pink);
+    opacity: 0.6;
+    margin: 30px 0;
+  }
+
+  .body {
+    font-family: var(--display);
+    font-weight: 300;
+    font-size: clamp(17px, 2.4vw, 22px);
+    line-height: 1.7;
+    color: rgba(232, 220, 200, 0.78);
+    max-width: 30rem;
+  }
+  .body em { font-style: italic; color: rgba(232, 220, 200, 0.95); }
+
+  nav {
+    margin-top: 44px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px 36px;
+  }
+
+  nav a {
+    font-family: var(--sans);
+    font-size: clamp(9px, 1.9vw, 11px);
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(232, 220, 200, 0.55);
+    text-decoration: none;
+    padding-bottom: 6px;
+    border-bottom: 1px solid rgba(255, 61, 138, 0.35);
+    transition: color 0.25s ease, border-color 0.25s ease;
+  }
+  nav a:hover,
+  nav a:focus-visible {
+    color: var(--sand);
+    border-bottom-color: var(--pink);
+  }
+  nav a:focus-visible {
+    outline: 1px solid var(--pink);
+    outline-offset: 6px;
+  }
+
+  .mark {
+    font-family: var(--sans);
+    font-size: clamp(8px, 1.8vw, 10px);
+    font-weight: 300;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    color: rgba(232, 220, 200, 0.28);
+    margin-top: 56px;
+  }
+
+  /* one orchestrated entrance */
+  .reveal > * {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: rise 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+  }
+  .reveal > *:nth-child(1) { animation-delay: 0.05s; }
+  .reveal > *:nth-child(2) { animation-delay: 0.16s; }
+  .reveal > *:nth-child(3) { animation-delay: 0.30s; }
+  .reveal > *:nth-child(4) { animation-delay: 0.38s; }
+  .reveal > *:nth-child(5) { animation-delay: 0.50s; }
+  .reveal > *:nth-child(6) { animation-delay: 0.62s; }
+
+  @keyframes rise {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal > * { animation: none; opacity: 1; transform: none; }
+    nav a { transition: none; }
+  }
+
+  @media (max-width: 640px) {
+    main { padding: 16% 10% 18% 12%; }
+    .rule { margin: 24px 0; }
+    nav { flex-direction: column; gap: 18px; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<div class="accent-v"></div>
+<div class="accent-h"></div>
+<div class="tri"></div>
+<div class="grain"></div>
+
+<main class="reveal">
+
+  <p class="kicker">404</p>
+
+  <h1>You've wandered off<br>the <em>path.</em></h1>
+
+  <div class="rule"></div>
+
+  <p class="body">
+    There's nothing at this address. A link broke, or the page moved, or
+    something got renamed along the way. <em>None of it is your fault.</em>
+  </p>
+
+  <nav>
+    <a href="/">Guided meditation</a>
+    <a href="/breathwork">Breathwork practice</a>
+  </nav>
+
+  <p class="mark">Joseph Bumbulis</p>
+
+</main>
+
+</body>
+</html>

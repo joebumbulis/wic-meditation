@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Guided Practice — Joseph Bumbulis</title>
+<meta name="description" content="Ten minutes to come back to yourself. A guided practice from Wisdom Integration Coaching.">
+
+<meta property="og:title" content="Ten minutes to come back to yourself">
+<meta property="og:description" content="A guided practice. Headphones help.">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --green:      #2D4A3E;
+    --green-deep: #1A2E28;
+    --sand:       #E8DCC8;
+    --cream:      #F5F0E8;
+    --pink:       #FF3D8A;
+
+    --display: 'Cormorant Garamond', Georgia, serif;
+    --sans:    'Barlow', system-ui, -apple-system, sans-serif;
+
+    --dial: 240px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
+
+  body {
+    background: var(--green-deep);
+    color: var(--sand);
+    font-family: var(--display);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  .grain {
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.055'/%3E%3C/svg%3E");
+    background-size: 180px;
+    opacity: 0.45;
+    pointer-events: none;
+    z-index: 3;
+  }
+
+  .accent-v { position: fixed; left: 0; top: 0; bottom: 0; width: 5px; background: var(--pink); z-index: 4; }
+  .accent-h { position: fixed; bottom: 0; left: 0; right: 0; height: 5px; background: linear-gradient(90deg, var(--pink), transparent); z-index: 4; }
+  .tri {
+    position: fixed; bottom: 0; right: 0; width: 0; height: 0;
+    border-style: solid;
+    border-width: 0 0 clamp(130px, 26vw, 220px) clamp(130px, 26vw, 220px);
+    border-color: transparent transparent var(--pink) transparent;
+    opacity: 0.06; pointer-events: none; z-index: 1;
+  }
+
+  main {
+    position: relative; z-index: 5;
+    min-height: 100%;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 9% 12% 10% 14%;
+    max-width: 46rem;
+  }
+
+  /* ─── dial ─── */
+
+  .dial-wrap { display: flex; justify-content: flex-start; margin-bottom: 3rem; }
+
+  .dial {
+    position: relative;
+    width: var(--dial); height: var(--dial);
+    background: none; border: 0; padding: 0;
+    cursor: pointer; border-radius: 50%; color: inherit;
+  }
+  .dial:focus-visible { outline: 1px solid var(--pink); outline-offset: 12px; }
+
+  .breath {
+    position: absolute; inset: 14%;
+    border-radius: 50%;
+    background: radial-gradient(circle at 50% 50%,
+                rgba(255, 61, 138, 0.14) 0%,
+                rgba(255, 61, 138, 0.04) 55%,
+                transparent 74%);
+    transform: scale(0.9); opacity: 0.4;
+    transition: opacity 1.2s ease, transform 1.2s ease;
+  }
+  .dial[data-state="playing"] .breath { opacity: 1; animation: breathe 9s ease-in-out infinite alternate; }
+  @keyframes breathe { from { transform: scale(0.86); } to { transform: scale(1.06); } }
+
+  .rings { position: absolute; inset: 0; transform: rotate(-90deg); }
+  .rings circle { fill: none; stroke-linecap: round; }
+  .track { stroke: rgba(232, 220, 200, 0.14); stroke-width: 1.5; }
+  .arc { stroke: var(--pink); stroke-width: 2.5; opacity: 0.85; transition: stroke-dashoffset 0.15s linear; }
+
+  .glyph { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none; }
+  .glyph svg { width: 32px; height: 32px; fill: var(--sand); transition: fill 0.25s ease; }
+  .dial:hover .glyph svg { fill: var(--pink); }
+
+  /* ─── text ─── */
+
+  .kicker {
+    font-family: var(--sans);
+    font-size: clamp(8px, 1.8vw, 10px);
+    font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase;
+    color: var(--pink); margin-bottom: 20px;
+  }
+
+  h1 {
+    font-family: var(--display); font-weight: 300;
+    font-size: clamp(28px, 6vw, 46px);
+    line-height: 1.16; letter-spacing: -0.005em;
+    color: var(--sand);
+  }
+  h1 em { font-style: italic; color: var(--pink); }
+
+  .rule { width: 48px; height: 1px; background: var(--pink); opacity: 0.6; margin: 26px 0; }
+
+  .body {
+    font-family: var(--display); font-weight: 300;
+    font-size: clamp(17px, 2.4vw, 22px);
+    line-height: 1.7;
+    color: rgba(232, 220, 200, 0.8);
+    max-width: 29rem;
+  }
+  .body em { font-style: italic; color: rgba(232, 220, 200, 0.95); }
+
+  /* ─── scrub + meta ─── */
+
+  .scrub {
+    display: block; position: relative;
+    width: 100%; max-width: 29rem; height: 24px;
+    margin: 2.25rem 0 1.25rem;
+    background: none; border: 0; padding: 0; cursor: pointer;
+  }
+  .scrub::before {
+    content: ""; position: absolute;
+    left: 0; right: 0; top: 50%; height: 1px;
+    background: rgba(232, 220, 200, 0.14);
+  }
+  .scrub-fill {
+    position: absolute; left: 0; top: 50%;
+    height: 1px; width: 0%;
+    background: var(--pink); opacity: 0.8;
+    transition: width 0.15s linear;
+  }
+  .scrub:focus-visible { outline: 1px solid var(--pink); outline-offset: 6px; }
+
+  .meta {
+    display: flex; align-items: baseline; gap: 2rem;
+    max-width: 29rem;
+    font-family: var(--sans);
+    font-size: clamp(9px, 1.9vw, 11px);
+    font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(232, 220, 200, 0.5);
+  }
+  .clock { font-variant-numeric: tabular-nums; }
+
+  a.quiet {
+    color: rgba(232, 220, 200, 0.5);
+    text-decoration: none;
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgba(255, 61, 138, 0.35);
+    transition: color 0.25s ease, border-color 0.25s ease;
+  }
+  a.quiet:hover, a.quiet:focus-visible { color: var(--sand); border-bottom-color: var(--pink); }
+
+  .notice {
+    font-family: var(--sans);
+    font-size: clamp(10px, 2vw, 12px);
+    font-weight: 400; letter-spacing: 0.1em; line-height: 1.7;
+    color: var(--pink); max-width: 29rem; margin-top: 1.5rem;
+  }
+  .notice[hidden] { display: none; }
+
+  footer {
+    margin-top: 3.5rem;
+    display: flex; flex-wrap: wrap; align-items: baseline;
+    gap: 12px 2rem;
+    font-family: var(--sans);
+    font-size: clamp(8px, 1.8vw, 10px);
+    font-weight: 400; letter-spacing: 0.25em; text-transform: uppercase;
+  }
+  .mark { font-weight: 300; letter-spacing: 0.45em; color: rgba(232, 220, 200, 0.26); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .dial[data-state="playing"] .breath { animation: none; transform: scale(1); }
+    .arc, .scrub-fill, .breath, .glyph svg, a.quiet { transition: none; }
+  }
+
+  @media (max-width: 680px) {
+    :root { --dial: 190px; }
+    main { padding: 14% 9% 16% 11%; }
+    .dial-wrap { margin-bottom: 2.25rem; }
+    .meta { flex-direction: column; gap: 1rem; align-items: flex-start; }
+    footer { flex-direction: column; gap: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="accent-v"></div>
+<div class="accent-h"></div>
+<div class="tri"></div>
+<div class="grain"></div>
+
+<main>
+
+  <div class="dial-wrap">
+    <button class="dial" id="dial" data-state="paused" aria-label="Play" aria-pressed="false">
+      <span class="breath"></span>
+      <svg class="rings" viewBox="0 0 240 240" aria-hidden="true">
+        <circle class="track" cx="120" cy="120" r="116"></circle>
+        <circle class="arc" id="arc" cx="120" cy="120" r="116"></circle>
+      </svg>
+      <span class="glyph" id="glyph">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>
+      </span>
+    </button>
+  </div>
+
+  <p class="kicker">A Guided Meditation Practice</p>
+
+  <h1>Ten minutes to come<br>back to <em>yourself.</em></h1>
+
+  <div class="rule"></div>
+
+  <p class="body">
+    Find somewhere you won't be interrupted. Sit or lie down. Let the breath
+    be slower than feels necessary, and let whatever is here be here.
+    <em>Nothing in you needs fixing.</em>
+  </p>
+
+  <button class="scrub" id="scrub" aria-label="Seek">
+    <span class="scrub-fill" id="scrubFill"></span>
+  </button>
+
+  <p class="meta">
+    <span class="clock" id="clock">0:00 / --:--</span>
+    <a class="quiet" id="dl" href="#" download>Download</a>
+  </p>
+
+  <p class="notice" id="notice" hidden>
+    The audio didn't load. Check the media host and file name below.
+  </p>
+
+  <footer>
+    <!-- <a class="quiet" href="/breathwork">Breathwork practice</a> -->
+    <span class="mark">Joseph Bumbulis</span>
+  </footer>
+
+</main>
+
+<audio id="audio" preload="metadata"></audio>
+
+<script>
+(function () {
+
+  /* ══════════════════════════════════════════════════
+     MEDIA SOURCE — the only line you change if the
+     file moves. Use a full R2 URL, or "meditation.m4a"
+     if the file sits beside this page.
+     ══════════════════════════════════════════════════ */
+  var AUDIO_SRC = 'https://media.josephbumbulis.com/meditation.m4a';
+
+  var audio  = document.getElementById('audio');
+  var dial   = document.getElementById('dial');
+  var arc    = document.getElementById('arc');
+  var glyph  = document.getElementById('glyph');
+  var clock  = document.getElementById('clock');
+  var scrub  = document.getElementById('scrub');
+  var fill   = document.getElementById('scrubFill');
+  var notice = document.getElementById('notice');
+  var dl     = document.getElementById('dl');
+
+  audio.src = AUDIO_SRC;
+  dl.href = AUDIO_SRC;
+
+  var R = 116;
+  var C = 2 * Math.PI * R;
+  arc.style.strokeDasharray = C;
+  arc.style.strokeDashoffset = C;
+
+  var PLAY  = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>';
+  var PAUSE = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5h3.5v15H7zM13.5 4.5H17v15h-3.5z"/></svg>';
+
+  function fmt(s) {
+    if (!isFinite(s) || s < 0) return '--:--';
+    var m = Math.floor(s / 60);
+    var r = Math.floor(s % 60);
+    return m + ':' + (r < 10 ? '0' : '') + r;
+  }
+
+  function paint() {
+    var d = audio.duration;
+    var p = (isFinite(d) && d > 0) ? (audio.currentTime / d) : 0;
+    arc.style.strokeDashoffset = C * (1 - p);
+    fill.style.width = (p * 100) + '%';
+    clock.textContent = fmt(audio.currentTime) + ' / ' + fmt(d);
+  }
+
+  function toggle() {
+    if (audio.paused) {
+      var r = audio.play();
+      if (r && r.catch) { r.catch(function () { notice.hidden = false; }); }
+    } else {
+      audio.pause();
+    }
+  }
+
+  dial.addEventListener('click', toggle);
+
+  audio.addEventListener('play', function () {
+    dial.dataset.state = 'playing';
+    dial.setAttribute('aria-label', 'Pause');
+    dial.setAttribute('aria-pressed', 'true');
+    glyph.innerHTML = PAUSE;
+  });
+
+  audio.addEventListener('pause', function () {
+    dial.dataset.state = 'paused';
+    dial.setAttribute('aria-label', 'Play');
+    dial.setAttribute('aria-pressed', 'false');
+    glyph.innerHTML = PLAY;
+  });
+
+  audio.addEventListener('loadedmetadata', paint);
+  audio.addEventListener('timeupdate', paint);
+  audio.addEventListener('ended', function () { audio.currentTime = 0; paint(); });
+  audio.addEventListener('error', function () { notice.hidden = false; });
+
+  scrub.addEventListener('click', function (e) {
+    if (!isFinite(audio.duration) || audio.duration <= 0) return;
+    var box = scrub.getBoundingClientRect();
+    var x = (e.clientX - box.left) / box.width;
+    audio.currentTime = Math.min(Math.max(x, 0), 1) * audio.duration;
+    paint();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.target && /^(INPUT|TEXTAREA)$/.test(e.target.tagName)) return;
+    if (e.code === 'Space' || e.key === ' ') { e.preventDefault(); toggle(); }
+    if (e.key === 'ArrowRight') { audio.currentTime = Math.min(audio.currentTime + 10, audio.duration || 0); paint(); }
+    if (e.key === 'ArrowLeft')  { audio.currentTime = Math.max(audio.currentTime - 10, 0); paint(); }
+  });
+
+  paint();
+})();
+</script>
+
+</body>
+</html>
