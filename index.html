@@ -862,6 +862,36 @@
       display: none;
     }
 
+      /* ───────── free practice footer ───────── */
+
+  .freebie .wrap {
+    display: grid;
+    grid-template-columns: clamp(12rem, 20vw, 18rem) minmax(0, 1fr);
+    gap: clamp(2rem, 5vw, 4.5rem);
+    align-items: center;
+    padding-top: clamp(3.5rem, 8vh, 5.5rem);
+    border-top: 1px solid rgba(232, 220, 200, 0.1);
+  }
+  .acrostic { display: block; width: 100%; height: auto; }
+  .acrostic[data-missing="true"] { display: none; }
+
+  .link-loud {
+    display: inline-block;
+    margin-top: 6px;
+    font-family: var(--sans);
+    font-size: clamp(10px, 1.3vw, 12px);
+    font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--pink);
+    text-decoration: none;
+    padding-bottom: 7px;
+    border-bottom: 1px solid rgba(255, 61, 138, 0.45);
+    transition: color 0.25s ease, border-color 0.25s ease;
+  }
+  .link-loud:hover, .link-loud:focus-visible {
+    color: var(--sand);
+    border-bottom-color: var(--sand);
+  }
+
     /* ───────── narrow ───────── */
 
     @media (max-width: 900px) {
@@ -926,6 +956,15 @@
       .cta-note {
         font-size: clamp(9px, 2.5vw, 11px);
       }
+
+      .freebie .wrap { 
+        grid-template-columns: minmax(0, 1fr); 
+        gap: 2.25rem; 
+      }
+
+      .acrostic { 
+        max-width: 15rem; 
+      }
     }
   </style>
 </head>
@@ -937,7 +976,7 @@
 
   <!-- ═══════════ HERO ═══════════ -->
   <section class="hero">
-    <img src="/images/joseph-forest.jpg" alt="" aria-hidden="true" width="2400" height="1800" data-img-optional>
+    <img src="/images/joseph-mountain.jpg" alt="" aria-hidden="true" width="2400" height="1800" data-img-optional>
     <div class="wrap">
       <p class="kicker">The Pause Practice · Five Weeks, Live</p>
 
@@ -1141,7 +1180,7 @@
 
   <!-- ═══════════ IMAGE BAND ═══════════ -->
   <section class="band" data-img>
-    <img src="/images/joseph-mountain.jpg" alt="" aria-hidden="true" width="2000" height="1500" loading="lazy">
+    <img src="/images/joseph-forest.jpg" alt="" aria-hidden="true" width="2000" height="1500" loading="lazy">
     <div class="wrap">
       <p class="band-line">It's where you stop performing a version of yourself and start actually <span>being</span>
         yourself.</p>
@@ -1533,14 +1572,37 @@
           Questions? <a class="quiet" href="mailto:joseph@josephbumbulis.com">joseph@josephbumbulis.com</a>
         </p>
       </div>
+    </div>
+  </section>
 
-      <div class="foot-links">
-        <a class="quiet" href="https://josephbumbulis.com" target="_blank" rel="noopener">FREE Pause Practice/a>
-        <a class="quiet" href="/meditation">Guided meditation</a>
-        <a class="quiet" href="/breathwork">Breathwork practice</a>
+  <!-- ═══════════ FREE PRACTICE ═══════════ -->
+  <section class="deep freebie">
+    <div class="grain-layer"></div>
+    <div class="wrap">
+  
+      <img class="acrostic" src="/images/pause-acrostic.png"
+        alt="PAUSE — Pause, Attend, Understand, Select Action, Embody" width="1080" height="1920" loading="lazy"
+        data-img-optional>
+  
+      <div>
+        <p class="kicker">Not ready yet?</p>
+        <h2>Start with the practice <em>itself.</em></h2>
+        <div class="rule"></div>
+        <p class="body">
+          The PAUSE practice, free, delivered over five emails. One letter for each
+          movement. Enough to find the gap on your own and see whether this way of
+          working is yours.
+        </p>
+        <a class="link-loud" href="https://josephbumbulis.com">Get the free PAUSE practice</a>
+  
+        <div class="foot-links">
+          <a class="quiet" href="/meditation">Guided meditation</a>
+          <a class="quiet" href="/breathwork">Breathwork practice</a>
+        </div>
+  
+        <p class="mark">Joseph Bumbulis</p>
       </div>
-
-      <p class="mark">Joseph Bumbulis</p>
+  
     </div>
   </section>
 
