@@ -892,6 +892,42 @@
     border-bottom-color: var(--sand);
   }
 
+    /* ───────── site footer ───────── */
+
+  footer.site {
+    margin-top: 0;
+    display: block;
+    position: relative;
+    z-index: 5;
+    background: var(--green-deep);
+    border-top: 1px solid rgba(232, 220, 200, 0.08);
+  }
+  footer.site .wrap {
+    padding-top: clamp(1.75rem, 3.5vh, 2.5rem);
+    padding-bottom: clamp(2.75rem, 5vh, 3.75rem);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px 2.5rem;
+    font-family: var(--sans);
+    font-size: clamp(9px, 1.15vw, 10px);
+    font-weight: 300;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(232, 220, 200, 0.3);
+  }
+  footer.site a {
+    color: rgba(232, 220, 200, 0.42);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 61, 138, 0.3);
+    padding-bottom: 3px;
+    transition: color 0.25s ease, border-color 0.25s ease;
+  }
+  footer.site a:hover, footer.site a:focus-visible {
+    color: var(--sand);
+    border-bottom-color: var(--pink);
+  }
     /* ───────── narrow ───────── */
 
     @media (max-width: 900px) {
@@ -965,6 +1001,10 @@
       .acrostic { 
         max-width: 15rem; 
       }
+
+        footer.site .wrap { 
+          flex-direction: column; gap: 14px; 
+        }
     }
   </style>
 </head>
@@ -1572,6 +1612,8 @@
           Questions? <a class="quiet" href="mailto:joseph@josephbumbulis.com">joseph@josephbumbulis.com</a>
         </p>
       </div>
+              <p class="mark">Joseph Bumbulis</p>
+
     </div>
   </section>
 
@@ -1598,13 +1640,18 @@
         <div class="foot-links">
           <a class="quiet" href="/meditation">Guided meditation</a>
           <a class="quiet" href="/breathwork">Breathwork practice</a>
-        </div>
-  
-        <p class="mark">Joseph Bumbulis</p>
+        </div>  
       </div>
   
     </div>
   </section>
+
+  <footer class="site">
+    <div class="wrap">
+      <span>Designed & built by Joseph Bumbulis * 2026</span>
+      <span>&copy;Wisdom Integration Coaching</span>
+    </div>
+  </footer>
 
   <script>
     (function () {
