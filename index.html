@@ -1,235 +1,1185 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Wisdom Integration Coaching — Joseph Bumbulis</title>
-  <meta name="description" content="Transformational coaching for men navigating identity collapse.">
-  <meta name="theme-color" content="#1A2E28">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Pause Practice — Joseph Bumbulis</title>
+<meta name="description" content="Five weeks of live, practical work to find the gap between stimulus and response — and choose from your truth instead of your wounds.">
+<meta name="theme-color" content="#1A2E28">
 
-  <!-- ══════════════════════════════════════════════════
-     PLACEHOLDER — replace this whole file with the
-     sales page. It exists so the domain root doesn't
-     return a 404 while the real page is being built.
-     ══════════════════════════════════════════════════ -->
+<meta property="og:title" content="You already know what you want. So why do you keep doing the thing you don't?">
+<meta property="og:description" content="The Pause Practice — five weeks, live. Starts October 6.">
+<meta property="og:type" content="website">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Barlow:wght@300;400;500;600&display=swap"
-    rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-  <style>
-    :root {
-      --green-deep: #1A2E28;
-      --sand: #E8DCC8;
-      --pink: #FF3D8A;
-      --display: 'Cormorant Garamond', Georgia, serif;
-      --sans: 'Barlow', system-ui, -apple-system, sans-serif;
-    }
+<style>
+  :root {
+    --green:      #2D4A3E;
+    --green-deep: #1A2E28;
+    --sand:       #E8DCC8;
+    --cream:      #F5F0E8;
+    --pink:       #FF3D8A;
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    --display: 'Cormorant Garamond', Georgia, serif;
+    --sans:    'Barlow', system-ui, -apple-system, sans-serif;
 
-    html {
-      -webkit-text-size-adjust: 100%;
-    }
+    --pad-x-r: clamp(1.75rem, 5vw, 5rem);
+    --pad-x-l: clamp(2.25rem, 5.5vw, 5.5rem);
+    --pad-y:   clamp(4.5rem, 10vh, 8rem);
+    --measure: 34rem;
+  }
 
-    body {
-      background: var(--green-deep);
-      color: var(--sand);
-      font-family: var(--display);
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    .grain {
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.055'/%3E%3C/svg%3E");
-      background-size: 180px;
-      opacity: 0.45;
-      pointer-events: none;
-      z-index: 3;
-    }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
-    .accent-v {
-      position: fixed;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 5px;
-      background: var(--pink);
-      z-index: 4;
-    }
+  body {
+    background: var(--green-deep);
+    color: var(--sand);
+    font-family: var(--display);
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
 
-    .accent-h {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 5px;
-      background: linear-gradient(90deg, var(--pink), transparent);
-      z-index: 4;
-    }
+  /* ───────── fixed brand furniture ───────── */
 
-    .tri {
-      position: fixed;
-      bottom: 0;
-      right: 0;
-      width: 0;
-      height: 0;
-      border-style: solid;
-      border-width: 0 0 clamp(110px, 22vw, 220px) clamp(110px, 22vw, 220px);
-      border-color: transparent transparent var(--pink) transparent;
-      opacity: 0.06;
-      pointer-events: none;
-      z-index: 1;
-    }
+  .accent-v { position: fixed; left: 0; top: 0; bottom: 0; width: 5px; background: var(--pink); z-index: 40; }
+  .accent-h { position: fixed; bottom: 0; left: 0; right: 0; height: 5px; background: linear-gradient(90deg, var(--pink), transparent); z-index: 40; }
 
-    main {
-      position: relative;
-      z-index: 5;
-      min-height: 100vh;
-      min-height: 100svh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      max-width: 72rem;
-      margin-inline: auto;
-      padding: clamp(3rem, 8vh, 6rem) clamp(1.75rem, 5vw, 5rem) clamp(4rem, 9vh, 7rem) clamp(2.25rem, 5.5vw, 5.5rem);
-    }
+  .grain-layer {
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.055'/%3E%3C/svg%3E");
+    background-size: 180px;
+    opacity: 0.45;
+    pointer-events: none;
+    z-index: 1;
+  }
 
-    .kicker {
-      font-family: var(--sans);
-      font-size: clamp(8px, 1.8vw, 10px);
-      font-weight: 500;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: var(--pink);
-      margin-bottom: 22px;
-    }
+  /* ───────── sections ───────── */
 
-    h1 {
-      font-family: var(--display);
-      font-weight: 300;
-      font-size: clamp(32px, 6.5vw, 58px);
-      line-height: 1.14;
-      letter-spacing: -0.005em;
-      text-wrap: balance;
-    }
+  section { position: relative; }
 
-    h1 em {
-      font-style: italic;
-      color: var(--pink);
-    }
+  .wrap {
+    position: relative; z-index: 5;
+    max-width: 74rem;
+    margin-inline: auto;
+    padding: var(--pad-y) var(--pad-x-r) var(--pad-y) var(--pad-x-l);
+  }
 
-    .rule {
-      width: 48px;
-      height: 1px;
-      background: var(--pink);
-      opacity: 0.6;
-      margin: 30px 0;
-    }
+  .deep  { background: var(--green-deep); color: var(--sand); }
+  .mid   { background: var(--green);      color: var(--sand); }
+  .light { background: var(--cream);      color: var(--green-deep); }
+  .sandy { background: var(--sand);       color: var(--green-deep); }
 
-    .body {
-      font-family: var(--display);
-      font-weight: 300;
-      font-size: clamp(17px, 2.3vw, 22px);
-      line-height: 1.72;
-      color: rgba(232, 220, 200, 0.8);
-      max-width: 34ch;
-    }
+  .light .body, .sandy .body { color: rgba(26, 46, 40, 0.86); }
+  .light h2, .sandy h2 { color: var(--green-deep); }
+  .light .kicker, .sandy .kicker { color: var(--green); }
 
-    nav {
-      margin-top: 44px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px 36px;
-    }
+  /* top/bottom borders on the pale quote band */
+  .bordered { border-top: 4px solid var(--green); border-bottom: 4px solid var(--pink); }
 
-    nav a {
-      font-family: var(--sans);
-      font-size: clamp(9px, 1.9vw, 11px);
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: rgba(232, 220, 200, 0.55);
-      text-decoration: none;
-      padding-bottom: 6px;
-      border-bottom: 1px solid rgba(255, 61, 138, 0.35);
-      transition: color 0.25s ease, border-color 0.25s ease;
-    }
+  /* ───────── type ───────── */
 
-    nav a:hover,
-    nav a:focus-visible {
-      color: var(--sand);
-      border-bottom-color: var(--pink);
-    }
+  .kicker {
+    font-family: var(--sans);
+    font-size: clamp(8px, 1.4vw, 10px);
+    font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase;
+    color: var(--pink);
+    margin-bottom: 22px;
+  }
 
-    .mark {
-      font-family: var(--sans);
-      font-size: clamp(8px, 1.8vw, 10px);
-      font-weight: 300;
-      letter-spacing: 0.45em;
-      text-transform: uppercase;
-      color: rgba(232, 220, 200, 0.26);
-      margin-top: 56px;
-    }
+  h1 {
+    font-family: var(--display); font-weight: 300;
+    font-size: clamp(33px, 5.4vw, 62px);
+    line-height: 1.11; letter-spacing: -0.008em;
+    text-wrap: balance;
+    max-width: 19ch;
+  }
+  h1 em { font-style: italic; color: var(--pink); }
 
-    @media (prefers-reduced-motion: reduce) {
-      nav a {
-        transition: none;
-      }
-    }
+  h2 {
+    font-family: var(--display); font-weight: 300;
+    font-size: clamp(27px, 3.8vw, 44px);
+    line-height: 1.16; letter-spacing: -0.005em;
+    color: var(--sand);
+    text-wrap: balance;
+    max-width: 20ch;
+  }
+  h2 em { font-style: italic; color: var(--pink); }
 
-    @media (max-width: 640px) {
-      .rule {
-        margin: 26px 0;
-      }
+  h3 {
+    font-family: var(--display); font-weight: 400;
+    font-size: clamp(20px, 2.2vw, 27px);
+    line-height: 1.3;
+    color: var(--sand);
+  }
+  .light h3, .sandy h3 { color: var(--green-deep); }
 
-      nav {
-        flex-direction: column;
-        gap: 18px;
-        align-items: flex-start;
-      }
-    }
-  </style>
+  .rule { width: 48px; height: 1px; background: var(--pink); opacity: 0.6; margin: clamp(22px, 3vw, 32px) 0; }
+
+  .body {
+    font-family: var(--display); font-weight: 300;
+    font-size: clamp(17px, 1.55vw, 21px);
+    line-height: 1.75;
+    color: rgba(232, 220, 200, 0.82);
+    max-width: var(--measure);
+  }
+  .body p + p { margin-top: 1.35rem; }
+  .body em { font-style: italic; color: rgba(232, 220, 200, 0.97); }
+  .light .body em, .sandy .body em { color: var(--green); }
+  .body strong { font-weight: 600; color: var(--sand); }
+  .light .body strong, .sandy .body strong { color: var(--green); }
+
+  .lede { font-size: clamp(18px, 1.85vw, 24px); color: rgba(232, 220, 200, 0.9); }
+
+  /* ───────── CTA ───────── */
+
+  .cta-block { margin-top: clamp(2.25rem, 4vw, 3.25rem); }
+
+  .btn {
+    display: inline-block;
+    background: var(--pink);
+    color: var(--green-deep);
+    font-family: var(--sans);
+    font-size: clamp(10px, 1.3vw, 12px);
+    font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
+    text-decoration: none;
+    padding: 19px 34px;
+    transition: transform 0.25s cubic-bezier(0.22,0.61,0.36,1), filter 0.25s ease;
+  }
+  .btn:hover, .btn:focus-visible { transform: translateY(-2px); filter: brightness(1.08); }
+  .btn:focus-visible { outline: 1px solid var(--sand); outline-offset: 4px; }
+
+  .cta-note {
+    font-family: var(--sans);
+    font-size: clamp(9px, 1.2vw, 11px);
+    font-weight: 400; letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(232, 220, 200, 0.45);
+    margin-top: 18px;
+    line-height: 1.9;
+  }
+  .light .cta-note, .sandy .cta-note { color: rgba(26, 46, 40, 0.5); }
+
+  a.quiet {
+    color: inherit; text-decoration: none;
+    border-bottom: 1px solid rgba(255, 61, 138, 0.45);
+    padding-bottom: 2px;
+    transition: border-color 0.25s ease;
+  }
+  a.quiet:hover, a.quiet:focus-visible { border-bottom-color: var(--pink); }
+
+  /* ───────── hero ───────── */
+
+  .hero .wrap {
+    min-height: 100vh; min-height: 100svh;
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.85fr);
+    gap: clamp(2.5rem, 5vw, 5rem);
+    align-items: center;
+  }
+  .hero-copy { min-width: 0; }
+  .hero .body { margin-top: clamp(24px, 3vw, 34px); }
+
+  .portrait {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background: rgba(232, 220, 200, 0.04);
+    border: 1px solid rgba(232, 220, 200, 0.1);
+  }
+  .portrait img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .portrait::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 4px;
+    background: var(--pink);
+  }
+  .portrait[data-missing="true"] { display: none; }
+
+  /* ───────── the five weeks ───────── */
+
+  .weeks { margin-top: clamp(2.5rem, 5vw, 4rem); display: grid; gap: clamp(1.75rem, 3vw, 2.5rem); }
+
+  .week {
+    display: grid;
+    grid-template-columns: clamp(58px, 7vw, 88px) minmax(0, 1fr);
+    gap: clamp(1.25rem, 3vw, 2.25rem);
+    align-items: start;
+    padding-top: clamp(1.5rem, 2.5vw, 2rem);
+    border-top: 1px solid rgba(232, 220, 200, 0.13);
+  }
+
+  .week-letter {
+    font-family: var(--display); font-weight: 300;
+    font-size: clamp(46px, 6vw, 76px);
+    line-height: 0.85;
+    color: var(--pink);
+    opacity: 0.55;
+  }
+  .week-no {
+    font-family: var(--sans);
+    font-size: clamp(8px, 1.2vw, 9px);
+    font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase;
+    color: rgba(232, 220, 200, 0.38);
+    margin-top: 10px;
+  }
+  .week h3 { margin-bottom: 12px; }
+  .week h3 span { color: var(--pink); font-style: italic; }
+  .week p {
+    font-size: clamp(16px, 1.45vw, 19px);
+    line-height: 1.72;
+    color: rgba(232, 220, 200, 0.78);
+    max-width: 44ch;
+  }
+
+  /* ───────── included ───────── */
+
+  .included { margin-top: clamp(2.5rem, 5vw, 3.5rem); display: grid; gap: clamp(1.5rem, 3vw, 2.25rem); grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); }
+  .item { border-left: 3px solid rgba(255, 61, 138, 0.7); padding: 2px 0 2px 20px; }
+  .item h3 { font-size: clamp(18px, 1.7vw, 21px); margin-bottom: 9px; }
+  .item p { font-size: clamp(15px, 1.35vw, 17px); line-height: 1.7; color: rgba(26, 46, 40, 0.72); }
+  .deep .item p, .mid .item p { color: rgba(232, 220, 200, 0.75); }
+
+  /* ───────── fit / not fit ───────── */
+
+  .fit-grid { margin-top: clamp(2.5rem, 5vw, 3.5rem); display: grid; grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr)); gap: clamp(2.5rem, 5vw, 4.5rem); }
+  .fit-col h3 { margin-bottom: clamp(1.5rem, 3vw, 2rem); }
+  .fit-list { display: grid; gap: 1.1rem; }
+  .fit-list p {
+    font-size: clamp(16px, 1.4vw, 18px);
+    line-height: 1.7;
+    color: rgba(232, 220, 200, 0.78);
+    padding-left: 22px;
+    position: relative;
+  }
+  .fit-list p::before {
+    content: ""; position: absolute; left: 0; top: 0.72em;
+    width: 11px; height: 1px; background: var(--pink); opacity: 0.8;
+  }
+  .fit-col.no .fit-list p::before { background: rgba(232, 220, 200, 0.3); }
+
+  /* ───────── testimonials ───────── */
+
+  .quotes { margin-top: clamp(2rem, 4vw, 3rem); }
+
+  .quote-stage { position: relative; }
+  .quote {
+    font-family: var(--display); font-weight: 300; font-style: italic;
+    font-size: clamp(19px, 2.3vw, 28px);
+    line-height: 1.55;
+    color: var(--green-deep);
+    max-width: 46rem;
+  }
+  .quote-attr {
+    font-family: var(--sans);
+    font-size: clamp(9px, 1.3vw, 11px);
+    font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--green);
+    opacity: 0.7;
+    margin-top: 22px;
+  }
+
+  /* carousel mode, applied by script */
+  .quote-stage.is-carousel .quote-item { display: none; }
+  .quote-stage.is-carousel .quote-item.active { display: block; animation: fadeIn 0.4s ease forwards; }
+  .quote-item + .quote-item { margin-top: 2.5rem; }
+  .quote-stage.is-carousel .quote-item + .quote-item { margin-top: 0; }
+
+  @keyframes fadeIn { from { opacity: 0; transform: translateX(10px); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) {
+    .quote-stage.is-carousel .quote-item.active { animation: none; }
+  }
+
+  .quote-nav {
+    display: flex; align-items: center; gap: 1.5rem;
+    margin-top: clamp(2rem, 3.5vw, 2.75rem);
+  }
+  .qbtn {
+    background: none; border: 1px solid rgba(45, 74, 62, 0.3);
+    color: var(--green); cursor: pointer;
+    width: 42px; height: 42px;
+    display: flex; align-items: center; justify-content: center;
+    transition: border-color 0.25s ease, color 0.25s ease;
+  }
+  .qbtn:hover, .qbtn:focus-visible { border-color: var(--pink); color: var(--pink); }
+  .qbtn svg { width: 15px; height: 15px; fill: currentColor; }
+  .qdots { display: flex; gap: 8px; }
+  .qdot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: rgba(45, 74, 62, 0.25);
+    border: 0; padding: 0; cursor: pointer;
+    transition: background 0.25s ease, transform 0.25s ease;
+  }
+  .qdot.active { background: var(--pink); transform: scale(1.35); }
+
+  .short-quotes {
+    margin-top: clamp(3rem, 6vw, 4.5rem);
+    padding-top: clamp(2rem, 4vw, 3rem);
+    border-top: 1px solid rgba(45, 74, 62, 0.18);
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: clamp(1.5rem, 3vw, 2.25rem);
+  }
+  .short-quotes p {
+    font-family: var(--display); font-style: italic; font-weight: 300;
+    font-size: clamp(16px, 1.5vw, 19px);
+    line-height: 1.6;
+    color: rgba(26, 46, 40, 0.8);
+  }
+  .short-quotes span {
+    display: block;
+    font-family: var(--sans); font-style: normal;
+    font-size: clamp(8px, 1.15vw, 10px);
+    font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase;
+    color: rgba(45, 74, 62, 0.6);
+    margin-top: 11px;
+  }
+
+  /* ───────── pricing ───────── */
+
+  .tiers { margin-top: clamp(2.5rem, 5vw, 3.5rem); display: grid; gap: clamp(1.5rem, 3vw, 2rem); grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr)); align-items: stretch; }
+
+  .tier {
+    border: 1px solid rgba(232, 220, 200, 0.14);
+    padding: clamp(1.75rem, 3vw, 2.5rem);
+    display: flex; flex-direction: column;
+  }
+  .tier.featured { border-color: var(--pink); }
+
+  .tier-label {
+    font-family: var(--sans);
+    font-size: clamp(8px, 1.2vw, 10px);
+    font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase;
+    color: rgba(232, 220, 200, 0.5);
+    margin-bottom: 8px;
+  }
+  .tier.featured .tier-label { color: var(--pink); }
+  .tier-window {
+    font-family: var(--sans);
+    font-size: clamp(9px, 1.2vw, 11px);
+    font-weight: 400; letter-spacing: 0.14em;
+    color: rgba(232, 220, 200, 0.42);
+    margin-bottom: 22px;
+  }
+  .price {
+    font-family: var(--display); font-weight: 300;
+    font-size: clamp(40px, 5vw, 58px);
+    line-height: 1; color: var(--sand);
+  }
+  .price-note {
+    font-family: var(--sans);
+    font-size: clamp(9px, 1.2vw, 11px);
+    font-weight: 400; letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(232, 220, 200, 0.45);
+    margin-top: 12px; line-height: 1.9;
+  }
+  .tier-spacer { flex: 1; min-height: 20px; }
+
+  .scarcity {
+    margin-top: clamp(2rem, 4vw, 2.75rem);
+    font-family: var(--sans);
+    font-size: clamp(10px, 1.3vw, 12px);
+    font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--pink);
+    line-height: 1.9;
+  }
+
+  /* ───────── about ───────── */
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: clamp(2.5rem, 5vw, 4.5rem);
+    align-items: start;
+  }
+  .creds {
+    margin-top: clamp(2rem, 3.5vw, 2.75rem);
+    padding-top: clamp(1.5rem, 3vw, 2rem);
+    border-top: 1px solid rgba(45, 74, 62, 0.2);
+    font-family: var(--sans);
+    font-size: clamp(11px, 1.3vw, 13px);
+    font-weight: 400; line-height: 2;
+    letter-spacing: 0.06em;
+    color: rgba(26, 46, 40, 0.65);
+    max-width: 40rem;
+  }
+
+  /* ───────── close ───────── */
+
+  .close .wrap { padding-bottom: clamp(6rem, 12vh, 9rem); }
+  .close h2 { max-width: 24ch; }
+
+  .mark {
+    font-family: var(--sans);
+    font-size: clamp(8px, 1.2vw, 10px);
+    font-weight: 300; letter-spacing: 0.45em; text-transform: uppercase;
+    color: rgba(232, 220, 200, 0.26);
+    margin-top: clamp(3rem, 6vw, 4.5rem);
+  }
+  .foot-links {
+    margin-top: 1.75rem;
+    display: flex; flex-wrap: wrap; gap: 14px 2rem;
+    font-family: var(--sans);
+    font-size: clamp(8px, 1.2vw, 10px);
+    font-weight: 400; letter-spacing: 0.25em; text-transform: uppercase;
+    color: rgba(232, 220, 200, 0.45);
+  }
+
+  /* ───────── full-bleed image band ───────── */
+
+  .band {
+    position: relative;
+    min-height: clamp(380px, 62vh, 640px);
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    background: var(--green-deep);
+  }
+  .band img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center 45%;
+    display: block;
+  }
+  .band::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg,
+                rgba(26, 46, 40, 0.22) 0%,
+                rgba(26, 46, 40, 0.55) 55%,
+                rgba(26, 46, 40, 0.88) 100%);
+    z-index: 2;
+  }
+  .band .wrap {
+    z-index: 3;
+    padding-top: clamp(3rem, 8vh, 5rem);
+    padding-bottom: clamp(3rem, 8vh, 5rem);
+    width: 100%;
+  }
+  .band-line {
+    font-family: var(--display);
+    font-weight: 300; font-style: italic;
+    font-size: clamp(24px, 3.6vw, 44px);
+    line-height: 1.25;
+    color: var(--sand);
+    max-width: 22ch;
+    text-shadow: 0 1px 24px rgba(26, 46, 40, 0.45);
+  }
+  .band-line span { color: var(--pink); font-style: normal; }
+  .band[data-missing="true"] { display: none; }
+
+  /* ───────── narrow ───────── */
+
+  @media (max-width: 900px) {
+    .hero .wrap { grid-template-columns: minmax(0, 1fr); gap: clamp(2.25rem, 6vw, 3rem); min-height: 0; padding-top: clamp(4rem, 12vh, 6rem); }
+    .hero .portrait { order: -1; aspect-ratio: 3 / 2; }
+    .about-grid { grid-template-columns: minmax(0, 1fr); }
+    .about-grid .portrait { max-width: 22rem; }
+    h1 { font-size: clamp(33px, 8.2vw, 46px); max-width: none; }
+    h2 { font-size: clamp(27px, 7vw, 38px); max-width: none; }
+    .body { font-size: clamp(17px, 4.3vw, 19px); }
+    .lede { font-size: clamp(18px, 4.8vw, 21px); }
+    .kicker { font-size: clamp(8px, 2.4vw, 10px); }
+    .week { grid-template-columns: minmax(0, 1fr); gap: 0.75rem; }
+    .week-letter { font-size: 44px; }
+    .week-no { margin-top: 4px; margin-bottom: 14px; }
+    .btn { display: block; text-align: center; padding: 20px 24px; }
+    .cta-note { font-size: clamp(9px, 2.5vw, 11px); }
+  }
+</style>
 </head>
-
 <body>
 
-  <div class="accent-v"></div>
-  <div class="accent-h"></div>
-  <div class="tri"></div>
-  <div class="grain"></div>
+<div class="accent-v"></div>
+<div class="accent-h"></div>
 
-  <main>
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero deep">
+  <div class="grain-layer"></div>
+  <div class="wrap">
 
-    <p class="kicker">Wisdom Integration Coaching</p>
+    <div class="hero-copy">
+      <p class="kicker">The Pause Practice · Five Weeks, Live</p>
 
-    <h1>Real transformation happens inside of <em>relationship.</em></h1>
+      <h1>You already know what you want. So why do you keep doing the thing you <em>don't?</em></h1>
 
+      <div class="body lede">
+        <p>
+          You've had the insight. You've read the books. You know the pattern. You can
+          see it happening in real time: the people-pleasing, the hiding, the automatic
+          yes when everything inside you is saying no.
+        </p>
+        <p>And you do it anyway.</p>
+        <p>
+          Not because you're broken. Not because you lack discipline. Because between the
+          moment something happens and the moment you respond, there's a gap.
+          <em>And right now, that gap is running you.</em>
+        </p>
+      </div>
+
+      <div class="cta-block">
+        <a class="btn" href="https://buy.stripe.com/00w28qeDP7wr1XA6Bq8EM01">Join the first cohort</a>
+        <p class="cta-note">Starts October 6 · 12 spots · Founders rate through September 28</p>
+      </div>
+    </div>
+
+    <div class="portrait" data-img>
+      <img src="/images/joseph-forest.jpg" alt="Joseph Bumbulis"
+           width="1200" height="1500" style="object-position: center 42%;">
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════ WHAT I BELIEVE ═══════════ -->
+<section class="mid">
+  <div class="wrap">
+    <p class="kicker">What I believe</p>
+    <h2>Most people don't have a self-awareness problem. They have a <em>gap</em> problem.</h2>
+    <div class="rule"></div>
+    <div class="body">
+      <p>
+        You already know yourself pretty well. You know when you're people-pleasing. You
+        know when you're abandoning yourself. You know when you're about to say yes to
+        something that costs you. You can see the pattern from a mile away.
+      </p>
+      <p>And then the moment arrives and the pattern runs anyway.</p>
+      <p>
+        That's not a character flaw. That's your nervous system doing exactly what it was
+        trained to do. You learned very early that certain responses kept you safe. That
+        shrinking was smarter than standing up. That keeping the peace was safer than
+        telling the truth. That your needs were negotiable and everyone else's weren't.
+      </p>
+      <p>
+        Those learned responses became automatic. And automatic means fast — faster than
+        insight and intention, faster than the part of you that knows better.
+      </p>
+      <p>
+        <strong>You cannot think your way out of an automatic response. You have to
+        practice your way out.</strong>
+      </p>
+      <p>
+        The practice starts in the gap. That space between what happens and how you
+        respond. Most people blow past it without knowing it exists. But with practice you
+        can find it, widen it, and live inside it.
+      </p>
+      <p>
+        It's where you stop reacting from your wounds and start responding from your truth.
+        Where you stop performing a version of yourself and start actually being yourself.
+        <em>It's where the aliveness is.</em>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ WHERE YOU ARE ═══════════ -->
+<section class="deep">
+  <div class="grain-layer"></div>
+  <div class="wrap">
+    <p class="kicker">Where you are right now</p>
+    <h2>You're tired of yourself.</h2>
+    <div class="rule"></div>
+    <div class="body">
+      <p>
+        Not in a self-loathing way. In an "I can see exactly what I'm doing and can't seem
+        to stop" way.
+      </p>
+      <p>
+        You say yes when you mean no. You shrink in the moments that matter. You walk away
+        from conversations replaying what you wished you'd said. You abandon yourself so
+        quietly and so regularly that it's become background noise — the low hum of a life
+        that's slightly off, slightly performed, <em>slightly not yours.</em>
+      </p>
+      <p>
+        And the frustrating part? You're not unconscious about it. You've done the work.
+        You've been to therapy, read the books, listened to the podcasts. You have language
+        for your patterns that most people don't have. You can name the wound, trace it
+        back, and understand exactly where it came from.
+      </p>
+      <p>
+        And then someone says something and the old response fires before you even know it
+        happened.
+      </p>
+      <p>
+        What's missing isn't more awareness. It's a practice that works at the speed of
+        real life.
+      </p>
+    </div>
+
+    <div class="cta-block">
+      <a class="btn" href="https://buy.stripe.com/00w28qeDP7wr1XA6Bq8EM01">Join the first cohort</a>
+      <p class="cta-note">$667 founders rate · Through September 28</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ TESTIMONIALS ═══════════ -->
+<section class="sandy bordered">
+  <div class="wrap">
+    <p class="kicker">What people are saying</p>
+
+    <div class="quotes">
+      <div class="quote-stage" id="quoteStage">
+
+        <div class="quote-item">
+          <p class="quote">
+            "Joseph's coaching has helped me notice the stories and judgments I carry
+            around being 'behind,' getting older, and how I'm perceived — and it's given me
+            a way to meet those with more compassion instead of getting stuck in them. I'm
+            leaving sessions with more self-acceptance, a clearer sense of my own value,
+            and more trust that I can build this in my own time. A big shift has been
+            remembering that I already have something meaningful to offer."
+          </p>
+          <p class="quote-attr">Lance</p>
+        </div>
+
+        <div class="quote-item">
+          <p class="quote">
+            "Before working with Joseph, I felt really stuck in the midlife transition
+            after my divorce. What shifted for me was real clarity around my values and who
+            I want to be moving forward. It stopped feeling abstract or stuck in the past,
+            and became more about how I actually want to live and show up day to day.
+            Joseph is very skilled at helping you get clear on what's actually true for you."
+          </p>
+          <p class="quote-attr">Bryan</p>
+        </div>
+
+        <div class="quote-item">
+          <p class="quote">
+            "What shifted was a shift in my heart — feeling it open, and to give and
+            receive. A shift in my focus and purpose. You have nothing to lose and
+            everything to gain."
+          </p>
+          <p class="quote-attr">Brian</p>
+        </div>
+
+      </div>
+
+      <div class="short-quotes">
+        <p>"Realized I've been acting from a place of fear instead of love."<span>Nicholas · Retreat</span></p>
+        <p>"My capacity to lovingly be myself has expanded."<span>Colton · Retreat</span></p>
+        <p>"Moved from a state of fog to clarity."<span>Brian · Retreat</span></p>
+        <p>"It's medicine for the soul."<span>Mark · Retreat</span></p>
+        <p>"You WILL thank yourself for saying yes."<span>Colton · Retreat</span></p>
+        <p>"It was a powerful experience that would be helpful to anyone looking to show up more fully to their life."<span>Dom · Retreat</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ WHERE YOU'RE GOING ═══════════ -->
+<section class="mid">
+  <div class="wrap">
+    <p class="kicker">Where you're going</p>
+    <h2>Five weeks from now, something is genuinely <em>different.</em></h2>
+    <div class="rule"></div>
+    <div class="body">
+      <p>
+        Not fixed. Not transformed beyond recognition. <em>Different</em> in the way that
+        actually lasts.
+      </p>
+      <p>
+        You have a practice. Not a concept — something to use in real time, in the middle
+        of a difficult conversation, in the moment before you abandon yourself again.
+      </p>
+      <p>
+        You catch yourself earlier. The gap between stimulus and response, that fraction of
+        a second that used to disappear, you feel it now. And in that space you have a
+        choice you didn't have before.
+      </p>
+      <p>
+        You say no when you mean no. Not perfectly. Not every time. But more than before.
+        And when you do, it feels like something returning to you rather than something
+        being taken from you.
+      </p>
+      <p>
+        You feel more like yourself. Not the performed version. <em>The actual one.</em>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ IMAGE BAND ═══════════ -->
+<section class="band" data-img>
+  <img src="/images/joseph-mountain.jpg" alt="" aria-hidden="true"
+       width="2000" height="1500" loading="lazy">
+  <div class="wrap">
+    <p class="band-line">It's where you stop performing a version of yourself and start actually <span>being</span> yourself.</p>
+  </div>
+</section>
+
+<!-- ═══════════ THE FIVE WEEKS ═══════════ -->
+<section class="deep">
+  <div class="grain-layer"></div>
+  <div class="wrap">
+    <p class="kicker">The Practice</p>
+    <h2>Five weeks. Five phases. One practice that changes everything.</h2>
     <div class="rule"></div>
 
-    <p class="body">
-      I work 1:1 with people ready to grow into the person they know
-      they've always been but aren't yet.
-    </p>
+    <div class="weeks">
 
-    <nav>
-      <a href="/meditation">Guided meditation</a>
-      <a href="/breathwork">Breathwork practice</a>
-    </nav>
+      <div class="week">
+        <div>
+          <div class="week-letter">P</div>
+          <div class="week-no">Week 1</div>
+        </div>
+        <div>
+          <h3>Pause: <span>The Map</span></h3>
+          <p>
+            Before you can pause anything, you have to see it clearly. We build your
+            personal Pause Map — your specific triggers, your specific automatic responses,
+            the particular ways your nervous system has learned to protect you that are now
+            costing you.
+          </p>
+        </div>
+      </div>
+
+      <div class="week">
+        <div>
+          <div class="week-letter">A</div>
+          <div class="week-no">Week 2</div>
+        </div>
+        <div>
+          <h3>Attend: <span>The Body</span></h3>
+          <p>
+            The gap doesn't live in your thinking mind. It lives in your body. This week we
+            go somatic. Breath. Body awareness. The felt sense of activation before it
+            becomes reaction. You learn to read your own nervous system like a weather
+            report.
+          </p>
+        </div>
+      </div>
+
+      <div class="week">
+        <div>
+          <div class="week-letter">U</div>
+          <div class="week-no">Week 3</div>
+        </div>
+        <div>
+          <h3>Understand: <span>The Gap Practice</span></h3>
+          <p>
+            This is the core. The actual practice — simple enough to use in real time,
+            powerful enough to change the pattern. Not a technique you apply from the
+            outside but a capacity you develop from within.
+          </p>
+        </div>
+      </div>
+
+      <div class="week">
+        <div>
+          <div class="week-letter">S</div>
+          <div class="week-no">Week 4</div>
+        </div>
+        <div>
+          <h3>Select: <span>Your Truth</span></h3>
+          <p>
+            The pause isn't the destination. It's the doorway. This week we work with
+            what's on the other side: your actual response, your real truth, the thing you
+            actually want to say, do, choose, feel.
+          </p>
+        </div>
+      </div>
+
+      <div class="week">
+        <div>
+          <div class="week-letter">E</div>
+          <div class="week-no">Week 5</div>
+        </div>
+        <div>
+          <h3>Embody: <span>The Integration</span></h3>
+          <p>
+            Making this yours for good. We identify the specific situations in your life
+            where the old pattern is most likely to reassert itself, and build a plan for
+            those moments. You leave with a practice that's yours. Not borrowed. Not
+            theoretical. Embodied.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="cta-block">
+      <a class="btn" href="https://buy.stripe.com/00w28qeDP7wr1XA6Bq8EM01">Join the first cohort</a>
+      <p class="cta-note">Tuesdays at 3pm Pacific · Starting October 6</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ WHAT'S INCLUDED ═══════════ -->
+<section class="light">
+  <div class="wrap">
+    <p class="kicker">What's included</p>
+    <h2>Everything you need to build the practice — and keep it.</h2>
+    <div class="rule"></div>
+
+    <div class="included">
+
+      <div class="item">
+        <h3>Five live sessions, 90 minutes each</h3>
+        <p>Every Tuesday at 3pm Pacific starting October 6. Every session recorded. Miss one? Watch the recording. Want to revisit a practice? It's there.</p>
+      </div>
+
+      <div class="item">
+        <h3>Guided meditations, yours to keep</h3>
+        <p>Each week includes a recording built specifically for that phase. Not generic relaxation tracks but targeted practices designed to help you find the gap and work with what's on the other side.</p>
+      </div>
+
+      <div class="item">
+        <h3>The Pause Map</h3>
+        <p>Your personal pattern document, built from your actual experience in week one. Your specific triggers. Your specific automatic responses. The foundation for everything that follows.</p>
+      </div>
+
+      <div class="item">
+        <h3>Regulation tools and somatic practices</h3>
+        <p>The practical toolkit for working with your nervous system in real time. How to recognize activation before it becomes reaction.</p>
+      </div>
+
+      <div class="item">
+        <h3>The Gap Practice</h3>
+        <p>A simple, embodied, repeatable practice for finding the space between stimulus and response. Built in week three. Yours for life after.</p>
+      </div>
+
+      <div class="item">
+        <h3>Weekly writing exercises</h3>
+        <p>Specific prompts designed to surface what's running underneath — the beliefs, the stories, the automatic narratives feeding the patterns.</p>
+      </div>
+
+      <div class="item">
+        <h3>A community doing the same work</h3>
+        <p>A group working with the same practice, in their own lives, in real time. You see yourself in others. You feel less alone in the pattern.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FIT ═══════════ -->
+<section class="mid">
+  <div class="wrap">
+    <p class="kicker">Honest fit</p>
+    <h2>This works for some people and not for others.</h2>
+
+    <div class="fit-grid">
+
+      <div class="fit-col yes">
+        <h3>This is for you if…</h3>
+        <div class="fit-list">
+          <p>You've done enough inner work to know your patterns, and you're frustrated that knowing them hasn't been enough to change them.</p>
+          <p>You're tired of abandoning yourself — in relationships, at work, in the small moments where you say yes when you mean no.</p>
+          <p>You're caught in a transition. Divorce. Job loss. Identity shift. The quiet feeling that the life you've been living isn't quite yours anymore.</p>
+          <p>You're exhausted by the performance — the version of you that manages everyone else's experience while quietly neglecting your own.</p>
+          <p>You're ready to stop analyzing and start practicing.</p>
+          <p>You sense the work needs to happen somewhere deeper than the thinking mind, and you're open to that.</p>
+          <p>You want to feel more like yourself. The actual one, waiting underneath the automatic responses.</p>
+        </div>
+      </div>
+
+      <div class="fit-col no">
+        <h3>This is not for you if…</h3>
+        <div class="fit-list">
+          <p>You're looking for a quick fix or a hack. This is a practice. It builds over five weeks and deepens after. There's no shortcut to embodiment.</p>
+          <p>You want theory without application. Every week includes real practice in and between sessions.</p>
+          <p>You're in acute mental health crisis. This is not a substitute for clinical support. If you're in active crisis, please seek that first.</p>
+          <p>You're not willing to feel uncomfortable. The pause creates space, and in that space things surface.</p>
+          <p>You want someone to tell you what to do. The Pause Practice gives you access to your own truth. What you do with that is yours.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ WHY THIS WORKS ═══════════ -->
+<section class="deep">
+  <div class="grain-layer"></div>
+  <div class="wrap">
+    <p class="kicker">Why this works when other things haven't</p>
+    <h2>Everything else has been working at the <em>wrong level.</em></h2>
+    <div class="rule"></div>
+    <div class="body">
+      <p>
+        Therapy helps you understand where the pattern came from. But comprehension and
+        freedom are not the same thing. You can trace a pattern all the way back to its
+        origin and still have it fire automatically in the moment that counts.
+      </p>
+      <p>
+        Mindfulness apps build awareness. But awareness without a specific practice for the
+        moment of activation is like knowing a storm is coming without having anywhere to
+        go. You see it. And then it hits you anyway.
+      </p>
+      <p>
+        Discipline works until it doesn't. Until you're tired, or triggered, or the stakes
+        are high and the old pattern is faster than your best intentions.
+      </p>
+      <p><strong>What's different here is the level at which we work.</strong></p>
+      <p>
+        We work in the body, where the patterns actually live. We work in real time, not in
+        retrospect. We work with the nervous system, not against it. We work in community,
+        not in isolation.
+      </p>
+      <p>
+        The practice is simpler than you expect. Not easy, but simple. No complex framework
+        to memorize, no ten-step process to execute in the middle of a charged moment.
+        There's just the pause. The breath. The body. The gap.
+      </p>
+      <p><em>Simple enough to actually use when it counts.</em></p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ ABOUT ═══════════ -->
+<section class="light">
+  <div class="wrap">
+    <p class="kicker">About Joseph</p>
+
+    <div class="about-grid">
+
+      <div class="portrait" data-img>
+        <img src="/images/joseph-window.jpg" alt="Joseph Bumbulis" width="1200" height="1500" loading="lazy">
+      </div>
+
+      <div>
+        <h2>I know this pattern from the <em>inside.</em></h2>
+        <div class="rule"></div>
+        <div class="body">
+          <p>I'm not going to give you a list of certifications and call it a story.</p>
+          <p>
+            For most of my adult life I was fluent in the language of inner work. I spent a
+            decade as an ordained pastor. I studied human transformation. I held space for
+            people in their hardest moments. And underneath all of that, I was running my
+            own automatic responses on a loop.
+          </p>
+          <p>
+            People-pleasing dressed up as ministry. Control dressed up as leadership.
+            Abandoning myself dressed up as service to others. I was good at it. Good enough
+            that I didn't see it for a long time.
+          </p>
+          <p>
+            Until they didn't run quietly anymore. The collapse that followed — a marriage
+            ending, a career identity dissolving, relationships fracturing, a dark night
+            that scared me enough to ask for help — cracked something open that all my
+            understanding hadn't been able to touch.
+          </p>
+          <p>
+            What changed wasn't more insight. <em>It was practice.</em> Meditation.
+            Breathwork. Somatic therapy. Shadow work. Ceremony. The slow, unglamorous,
+            nonlinear work of actually building a different relationship with my own nervous
+            system.
+          </p>
+          <p>
+            I still catch old patterns loading. I still feel the pull of responses that have
+            decades of momentum behind them. But I catch them earlier. And in the gap I've
+            built — through years of practice, not years of understanding — I have a choice
+            I didn't used to have.
+          </p>
+          <p>
+            That's what I'm teaching. <strong>Not a concept I read about. A practice I live.</strong>
+          </p>
+        </div>
+
+        <p class="creds">
+          Ten years as an ordained Baptist pastor · A decade in tech · ICF/ICM certified
+          coach · Certified meditation and breathwork instructor · Five-plus years of daily
+          meditation practice · Breathwork facilitator · Somatic work · Indigenous wisdom
+          traditions · Men's retreat facilitator
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ INVESTMENT ═══════════ -->
+<section class="deep">
+  <div class="grain-layer"></div>
+  <div class="wrap">
+    <p class="kicker">The investment</p>
+    <h2>First cohort. Founders pricing.</h2>
+    <div class="rule"></div>
+
+    <div class="tiers">
+
+      <div class="tier featured">
+        <p class="tier-label">Early Founders Rate</p>
+        <p class="tier-window">Now through September 28</p>
+        <p class="price">$697</p>
+        <p class="price-note">Pay in full<br>or $375 × 2</p>
+        <div class="tier-spacer"></div>
+      </div>
+
+      <div class="tier">
+        <p class="tier-label">Standard Rate</p>
+        <p class="tier-window">September 29 through October 4</p>
+        <p class="price">$997</p>
+        <p class="price-note">Pay in full<br>or $525 × 2</p>
+        <div class="tier-spacer"></div>
+      </div>
+
+    </div>
+
+    <p class="scarcity">Doors close October 5 · 12 spots · When they're gone they're gone</p>
+
+    <div class="body" style="margin-top: clamp(2.5rem, 5vw, 3.5rem);">
+      <p>I want to say something honest about this investment.</p>
+      <p>
+        $697 is real money. And I'm not going to dress it up with inflated value stacks or
+        tell you it's worth ten times that if you just think about it right.
+      </p>
+      <p>
+        Here's what I will say. You've already spent more than $697 on the cost of not
+        changing this. In the relationships that have suffered. In the opportunities you
+        didn't take. In the slow accumulation of moments where you abandoned yourself and
+        felt a little less like yourself afterward.
+      </p>
+      <p>That cost is real. It's just harder to put a number on.</p>
+      <p>
+        This is five weeks. One practice. A gap between who you've been and who you
+        actually are. <em>That's worth something. You get to decide how much.</em>
+      </p>
+    </div>
+
+    <div class="cta-block">
+      <a class="btn" href="https://buy.stripe.com/00w28qeDP7wr1XA6Bq8EM01">Enroll now — founders rate $697</a>
+      <p class="cta-note">
+        Questions first? <a class="quiet" href="mailto:joseph@josephbumbulis.com">joseph@josephbumbulis.com</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CLOSE ═══════════ -->
+<section class="close deep">
+  <div class="grain-layer"></div>
+  <div class="wrap">
+    <p class="kicker">One last thing</p>
+    <h2>You've been waiting to feel ready. <em>That's the pattern we're here to break.</em></h2>
+    <div class="rule"></div>
+    <div class="body">
+      <p>
+        You've been waiting to have fewer things on your plate. To find the right time.
+      </p>
+      <p>
+        You don't have to be ready. You just have to be honest enough to admit that what
+        you've been doing isn't working, and willing enough to try something that works at
+        a different level.
+      </p>
+      <p>
+        The gap is there. It's always been there.
+      </p>
+      <p>
+        <strong>October 6 is when we start finding it together.</strong>
+      </p>
+      <p>You in?</p>
+    </div>
+
+    <div class="cta-block">
+      <a class="btn" href="https://buy.stripe.com/00w28qeDP7wr1XA6Bq8EM01">Enroll now — founders rate $697</a>
+      <p class="cta-note">
+        Tuesdays 3pm Pacific · 12 spots · Next cohort early 2027<br>
+        Questions? <a class="quiet" href="mailto:joseph@josephbumbulis.com">joseph@josephbumbulis.com</a>
+      </p>
+    </div>
+
+    <div class="foot-links">
+      <a class="quiet" href="/meditation">Guided meditation</a>
+      <a class="quiet" href="/breathwork">Breathwork practice</a>
+    </div>
 
     <p class="mark">Joseph Bumbulis</p>
+  </div>
+</section>
 
-  </main>
+<script>
+(function () {
+
+  /* ─────────────────────────────────────────────
+     Hide any portrait frame whose image is missing,
+     so the page never shows a broken-image box
+     before the real photos are committed.
+     ───────────────────────────────────────────── */
+  Array.prototype.forEach.call(document.querySelectorAll('[data-img] img'), function (img) {
+    function hide() { img.closest('[data-img]').setAttribute('data-missing', 'true'); }
+    img.addEventListener('error', hide);
+    if (img.complete && img.naturalWidth === 0) { hide(); }
+  });
+
+  /* ─────────────────────────────────────────────
+     Testimonials: the markup is a plain stack, so
+     it reads fine with no JS. This upgrades it to
+     a carousel only once the script runs.
+     ───────────────────────────────────────────── */
+  var stage = document.getElementById('quoteStage');
+  if (!stage) return;
+
+  var items = stage.querySelectorAll('.quote-item');
+  if (items.length < 2) return;
+
+  stage.classList.add('is-carousel');
+  items[0].classList.add('active');
+
+  var nav = document.createElement('div');
+  nav.className = 'quote-nav';
+
+  function mkBtn(label, path) {
+    var b = document.createElement('button');
+    b.className = 'qbtn';
+    b.type = 'button';
+    b.setAttribute('aria-label', label);
+    b.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="' + path + '"/></svg>';
+    return b;
+  }
+
+  var prev = mkBtn('Previous testimonial', 'M15.5 3.5L7 12l8.5 8.5 1.6-1.6L10.2 12l6.9-6.9z');
+  var next = mkBtn('Next testimonial',     'M8.5 3.5L17 12l-8.5 8.5-1.6-1.6L13.8 12 6.9 5.1z');
+
+  var dots = document.createElement('div');
+  dots.className = 'qdots';
+
+  var cur = 0;
+
+  function go(n) {
+    items[cur].classList.remove('active');
+    dots.children[cur].classList.remove('active');
+    dots.children[cur].setAttribute('aria-current', 'false');
+    cur = (n + items.length) % items.length;
+    items[cur].classList.add('active');
+    dots.children[cur].classList.add('active');
+    dots.children[cur].setAttribute('aria-current', 'true');
+  }
+
+  Array.prototype.forEach.call(items, function (_, i) {
+    var d = document.createElement('button');
+    d.className = 'qdot' + (i === 0 ? ' active' : '');
+    d.type = 'button';
+    d.setAttribute('aria-label', 'Testimonial ' + (i + 1));
+    d.setAttribute('aria-current', i === 0 ? 'true' : 'false');
+    d.addEventListener('click', function () { go(i); });
+    dots.appendChild(d);
+  });
+
+  prev.addEventListener('click', function () { go(cur - 1); });
+  next.addEventListener('click', function () { go(cur + 1); });
+
+  nav.appendChild(prev);
+  nav.appendChild(dots);
+  nav.appendChild(next);
+  stage.parentNode.insertBefore(nav, stage.nextSibling);
+
+  // swipe
+  var tx = null;
+  stage.addEventListener('touchstart', function (e) { tx = e.touches[0].clientX; }, { passive: true });
+  stage.addEventListener('touchend', function (e) {
+    if (tx === null) return;
+    var dx = e.changedTouches[0].clientX - tx;
+    if (Math.abs(dx) > 45) { dx < 0 ? go(cur + 1) : go(cur - 1); }
+    tx = null;
+  }, { passive: true });
+
+})();
+</script>
 
 </body>
-
 </html>

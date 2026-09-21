@@ -1,4 +1,5 @@
-# Media is hosted on R2 and YouTube, never in git
+# Audio and video are hosted on R2 and YouTube, never in git.
+# (Images ARE committed — they're small and ship with the page.)
 *.m4a
 *.mp3
 *.mp4
@@ -6,6 +7,16 @@
 *.wav
 *.aac
 *.webm
+
+# Source files from photo/design tools — export the web version instead
+*.psd
+*.ai
+*.sketch
+*.fig
+*.tiff
+*.raw
+*.cr2
+*.arw
 
 # macOS
 .DS_Store
