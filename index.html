@@ -1,417 +1,235 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>A Guided Practice — Joseph Bumbulis</title>
-<meta name="description" content="Ten minutes to come back to yourself. A guided practice from Wisdom Integration Coaching.">
-<meta name="theme-color" content="#1A2E28">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Wisdom Integration Coaching — Joseph Bumbulis</title>
+  <meta name="description" content="Transformational coaching for men navigating identity collapse.">
+  <meta name="theme-color" content="#1A2E28">
 
-<meta property="og:title" content="Ten minutes to come back to yourself">
-<meta property="og:description" content="A guided practice. Headphones help.">
-<meta property="og:type" content="website">
+  <!-- ══════════════════════════════════════════════════
+     PLACEHOLDER — replace this whole file with the
+     sales page. It exists so the domain root doesn't
+     return a 404 while the real page is being built.
+     ══════════════════════════════════════════════════ -->
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Barlow:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
 
-<style>
-  :root {
-    --green:      #2D4A3E;
-    --green-deep: #1A2E28;
-    --sand:       #E8DCC8;
-    --cream:      #F5F0E8;
-    --pink:       #FF3D8A;
-
-    --display: 'Cormorant Garamond', Georgia, serif;
-    --sans:    'Barlow', system-ui, -apple-system, sans-serif;
-
-    --dial: clamp(168px, 20vw, 248px);
-
-    /* edge padding — left is larger to clear the pink bar */
-    --pad-y:     clamp(3rem, 7vh, 5rem);
-    --pad-right: clamp(1.75rem, 5vw, 5rem);
-    --pad-left:  clamp(2.25rem, 5.5vw, 5.5rem);
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  html { -webkit-text-size-adjust: 100%; }
-
-  body {
-    background: var(--green-deep);
-    color: var(--sand);
-    font-family: var(--display);
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-  }
-
-  .grain {
-    position: fixed; inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.055'/%3E%3C/svg%3E");
-    background-size: 180px;
-    opacity: 0.45;
-    pointer-events: none;
-    z-index: 3;
-  }
-
-  .accent-v { position: fixed; left: 0; top: 0; bottom: 0; width: 5px; background: var(--pink); z-index: 4; }
-  .accent-h { position: fixed; bottom: 0; left: 0; right: 0; height: 5px; background: linear-gradient(90deg, var(--pink), transparent); z-index: 4; }
-  .tri {
-    position: fixed; bottom: 0; right: 0; width: 0; height: 0;
-    border-style: solid;
-    border-width: 0 0 clamp(110px, 22vw, 220px) clamp(110px, 22vw, 220px);
-    border-color: transparent transparent var(--pink) transparent;
-    opacity: 0.06; pointer-events: none; z-index: 1;
-  }
-
-  /* ───────── layout shell ─────────
-     min-height uses svh so mobile browser chrome doesn't
-     push content off-screen. margin-block:auto centres the
-     block without clipping it when it outgrows the viewport. */
-
-  main {
-    position: relative; z-index: 5;
-    min-height: 100vh;
-    min-height: 100svh;
-    display: flex;
-    max-width: 76rem;
-    margin-inline: auto;
-    padding: var(--pad-y) var(--pad-right) calc(var(--pad-y) + 1rem) var(--pad-left);
-  }
-
-  .layout {
-    margin-block: auto;
-    width: 100%;
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
-    gap: clamp(2.5rem, 5vw, 4.5rem);
-    align-items: center;
-  }
-
-  .col-text { min-width: 0; }
-
-  /* ───────── dial ───────── */
-
-  .dial {
-    position: relative;
-    width: var(--dial); height: var(--dial);
-    background: none; border: 0; padding: 0;
-    cursor: pointer; border-radius: 50%; color: inherit;
-    flex-shrink: 0;
-  }
-  .dial:focus-visible { outline: 1px solid var(--pink); outline-offset: 12px; }
-
-  .breath {
-    position: absolute; inset: 14%;
-    border-radius: 50%;
-    background: radial-gradient(circle at 50% 50%,
-                rgba(255, 61, 138, 0.14) 0%,
-                rgba(255, 61, 138, 0.04) 55%,
-                transparent 74%);
-    transform: scale(0.9); opacity: 0.4;
-    transition: opacity 1.2s ease, transform 1.2s ease;
-  }
-  .dial[data-state="playing"] .breath { opacity: 1; animation: breathe 9s ease-in-out infinite alternate; }
-  @keyframes breathe { from { transform: scale(0.86); } to { transform: scale(1.06); } }
-
-  .rings { position: absolute; inset: 0; transform: rotate(-90deg); }
-  .rings circle { fill: none; stroke-linecap: round; }
-  .track { stroke: rgba(232, 220, 200, 0.14); stroke-width: 1.5; }
-  .arc { stroke: var(--pink); stroke-width: 2.5; opacity: 0.85; transition: stroke-dashoffset 0.15s linear; }
-
-  .glyph { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none; }
-  .glyph svg { width: clamp(26px, 3.2vw, 34px); height: clamp(26px, 3.2vw, 34px); fill: var(--sand); transition: fill 0.25s ease; }
-  .dial:hover .glyph svg { fill: var(--pink); }
-
-  /* ───────── type ───────── */
-
-  .kicker {
-    font-family: var(--sans);
-    font-size: clamp(8px, 1.4vw, 10px);
-    font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase;
-    color: var(--pink); margin-bottom: 18px;
-  }
-
-  h1 {
-    font-family: var(--display); font-weight: 300;
-    font-size: clamp(30px, 4.6vw, 46px);
-    line-height: 1.16; letter-spacing: -0.005em;
-    color: var(--sand);
-    text-wrap: balance;
-  }
-  h1 em { font-style: italic; color: var(--pink); }
-
-  .rule { width: 48px; height: 1px; background: var(--pink); opacity: 0.6; margin: clamp(20px, 2.5vw, 28px) 0; }
-
-  .body {
-    font-family: var(--display); font-weight: 300;
-    font-size: clamp(17px, 1.6vw, 21px);
-    line-height: 1.72;
-    color: rgba(232, 220, 200, 0.82);
-    max-width: 32ch;
-  }
-  .body em { font-style: italic; color: rgba(232, 220, 200, 0.96); }
-
-  /* ───────── scrub + meta ───────── */
-
-  .scrub {
-    display: block; position: relative;
-    width: 100%; max-width: 30rem; height: 26px;
-    margin: clamp(1.75rem, 3vw, 2.5rem) 0 1rem;
-    background: none; border: 0; padding: 0; cursor: pointer;
-  }
-  .scrub::before {
-    content: ""; position: absolute;
-    left: 0; right: 0; top: 50%; height: 1px;
-    background: rgba(232, 220, 200, 0.14);
-  }
-  .scrub-fill {
-    position: absolute; left: 0; top: 50%;
-    height: 1px; width: 0%;
-    background: var(--pink); opacity: 0.8;
-    transition: width 0.15s linear;
-  }
-  .scrub:focus-visible { outline: 1px solid var(--pink); outline-offset: 6px; }
-
-  .meta {
-    display: flex; align-items: baseline;
-    gap: 1.25rem 2rem; flex-wrap: wrap;
-    max-width: 30rem;
-    font-family: var(--sans);
-    font-size: clamp(9px, 1.3vw, 11px);
-    font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase;
-    color: rgba(232, 220, 200, 0.5);
-  }
-  .clock { font-variant-numeric: tabular-nums; }
-
-  a.quiet {
-    color: rgba(232, 220, 200, 0.5);
-    text-decoration: none;
-    padding-bottom: 5px;
-    border-bottom: 1px solid rgba(255, 61, 138, 0.35);
-    transition: color 0.25s ease, border-color 0.25s ease;
-  }
-  a.quiet:hover, a.quiet:focus-visible { color: var(--sand); border-bottom-color: var(--pink); }
-
-  .notice {
-    font-family: var(--sans);
-    font-size: clamp(10px, 1.4vw, 12px);
-    font-weight: 400; letter-spacing: 0.08em; line-height: 1.7;
-    color: var(--pink); max-width: 30rem; margin-top: 1.25rem;
-  }
-  .notice[hidden] { display: none; }
-
-  footer {
-    margin-top: clamp(2.5rem, 5vw, 3.75rem);
-    display: flex; flex-wrap: wrap; align-items: baseline;
-    gap: 14px 2rem;
-    font-family: var(--sans);
-    font-size: clamp(8px, 1.3vw, 10px);
-    font-weight: 400; letter-spacing: 0.25em; text-transform: uppercase;
-  }
-  .mark { font-weight: 300; letter-spacing: 0.45em; color: rgba(232, 220, 200, 0.26); }
-
-  /* ───────── phone / narrow ───────── */
-
-  @media (max-width: 880px) {
-    .layout {
-      grid-template-columns: minmax(0, 1fr);
-      gap: clamp(2rem, 6vw, 2.75rem);
-      align-items: start;
-      justify-items: start;
+  <style>
+    :root {
+      --green-deep: #1A2E28;
+      --sand: #E8DCC8;
+      --pink: #FF3D8A;
+      --display: 'Cormorant Garamond', Georgia, serif;
+      --sans: 'Barlow', system-ui, -apple-system, sans-serif;
     }
-    h1 { font-size: clamp(30px, 8vw, 40px); }
-    .body { font-size: clamp(17px, 4.4vw, 20px); max-width: 34ch; }
-    .kicker { font-size: clamp(8px, 2.4vw, 10px); }
-    .meta { font-size: clamp(9px, 2.6vw, 11px); gap: 1rem 1.75rem; }
-    footer { font-size: clamp(8px, 2.4vw, 10px); gap: 16px 1.75rem; }
-    .glyph svg { width: 28px; height: 28px; }
-  }
 
-  /* very short landscape phones: stop forcing full height */
-  @media (max-height: 520px) and (max-width: 880px) {
-    main { min-height: 0; }
-    :root { --dial: 140px; }
-  }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  @media (prefers-reduced-motion: reduce) {
-    .dial[data-state="playing"] .breath { animation: none; transform: scale(1); }
-    .arc, .scrub-fill, .breath, .glyph svg, a.quiet { transition: none; }
-  }
-</style>
+    html {
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      background: var(--green-deep);
+      color: var(--sand);
+      font-family: var(--display);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    .grain {
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.055'/%3E%3C/svg%3E");
+      background-size: 180px;
+      opacity: 0.45;
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    .accent-v {
+      position: fixed;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 5px;
+      background: var(--pink);
+      z-index: 4;
+    }
+
+    .accent-h {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, var(--pink), transparent);
+      z-index: 4;
+    }
+
+    .tri {
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 0 0 clamp(110px, 22vw, 220px) clamp(110px, 22vw, 220px);
+      border-color: transparent transparent var(--pink) transparent;
+      opacity: 0.06;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    main {
+      position: relative;
+      z-index: 5;
+      min-height: 100vh;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      max-width: 72rem;
+      margin-inline: auto;
+      padding: clamp(3rem, 8vh, 6rem) clamp(1.75rem, 5vw, 5rem) clamp(4rem, 9vh, 7rem) clamp(2.25rem, 5.5vw, 5.5rem);
+    }
+
+    .kicker {
+      font-family: var(--sans);
+      font-size: clamp(8px, 1.8vw, 10px);
+      font-weight: 500;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--pink);
+      margin-bottom: 22px;
+    }
+
+    h1 {
+      font-family: var(--display);
+      font-weight: 300;
+      font-size: clamp(32px, 6.5vw, 58px);
+      line-height: 1.14;
+      letter-spacing: -0.005em;
+      text-wrap: balance;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--pink);
+    }
+
+    .rule {
+      width: 48px;
+      height: 1px;
+      background: var(--pink);
+      opacity: 0.6;
+      margin: 30px 0;
+    }
+
+    .body {
+      font-family: var(--display);
+      font-weight: 300;
+      font-size: clamp(17px, 2.3vw, 22px);
+      line-height: 1.72;
+      color: rgba(232, 220, 200, 0.8);
+      max-width: 34ch;
+    }
+
+    nav {
+      margin-top: 44px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px 36px;
+    }
+
+    nav a {
+      font-family: var(--sans);
+      font-size: clamp(9px, 1.9vw, 11px);
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(232, 220, 200, 0.55);
+      text-decoration: none;
+      padding-bottom: 6px;
+      border-bottom: 1px solid rgba(255, 61, 138, 0.35);
+      transition: color 0.25s ease, border-color 0.25s ease;
+    }
+
+    nav a:hover,
+    nav a:focus-visible {
+      color: var(--sand);
+      border-bottom-color: var(--pink);
+    }
+
+    .mark {
+      font-family: var(--sans);
+      font-size: clamp(8px, 1.8vw, 10px);
+      font-weight: 300;
+      letter-spacing: 0.45em;
+      text-transform: uppercase;
+      color: rgba(232, 220, 200, 0.26);
+      margin-top: 56px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      nav a {
+        transition: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .rule {
+        margin: 26px 0;
+      }
+
+      nav {
+        flex-direction: column;
+        gap: 18px;
+        align-items: flex-start;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<div class="accent-v"></div>
-<div class="accent-h"></div>
-<div class="tri"></div>
-<div class="grain"></div>
+  <div class="accent-v"></div>
+  <div class="accent-h"></div>
+  <div class="tri"></div>
+  <div class="grain"></div>
 
-<main>
-  <div class="layout">
+  <main>
 
-    <button class="dial" id="dial" data-state="paused" aria-label="Play" aria-pressed="false">
-      <span class="breath"></span>
-      <svg class="rings" viewBox="0 0 248 248" aria-hidden="true">
-        <circle class="track" cx="124" cy="124" r="120"></circle>
-        <circle class="arc" id="arc" cx="124" cy="124" r="120"></circle>
-      </svg>
-      <span class="glyph" id="glyph">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>
-      </span>
-    </button>
+    <p class="kicker">Wisdom Integration Coaching</p>
 
-    <div class="col-text">
+    <h1>Real transformation happens inside of <em>relationship.</em></h1>
 
-      <p class="kicker">Wisdom Integration Coaching *A Guided Meditation Practice</p>
+    <div class="rule"></div>
 
-      <h1>Ten minutes to come back to <em>yourself.</em></h1>
+    <p class="body">
+      I work 1:1 with people ready to grow into the person they know
+      they've always been but aren't yet.
+    </p>
 
-      <div class="rule"></div>
+    <nav>
+      <a href="/meditation">Guided meditation</a>
+      <a href="/breathwork">Breathwork practice</a>
+    </nav>
 
-      <p class="body">
-        Find somewhere you won't be interrupted. Sit or lie down. Let the breath
-        be slower than feels necessary, and let whatever is here be here.
-        <em>Nothing in you needs fixing.</em>
-      </p>
+    <p class="mark">Joseph Bumbulis</p>
 
-      <button class="scrub" id="scrub" aria-label="Seek">
-        <span class="scrub-fill" id="scrubFill"></span>
-      </button>
-
-      <p class="meta">
-        <span class="clock" id="clock">0:00 / --:--</span>
-        <a class="quiet" id="dl" href="#" download>Download</a>
-      </p>
-
-      <p class="notice" id="notice" hidden>
-        The audio didn't load. Check the media URL in this page's source.
-      </p>
-
-      <footer>
-        <a class="quiet" href="/breathwork">Breathwork practice</a>
-        <span class="mark">Joseph Bumbulis</span>
-      </footer>
-
-    </div>
-
-  </div>
-</main>
-
-<audio id="audio" preload="metadata"></audio>
-
-<script>
-(function () {
-
-  /* ══════════════════════════════════════════════════
-     MEDIA SOURCE — the only line you change if the
-     file moves. This is the R2 custom domain, not the
-     bucket name; renaming the bucket changes nothing.
-     ══════════════════════════════════════════════════ */
-  var AUDIO_SRC = 'https://media.josephbumbulis.com/Internal%20scan%20meditation.m4a';
-
-  var audio  = document.getElementById('audio');
-  var dial   = document.getElementById('dial');
-  var arc    = document.getElementById('arc');
-  var glyph  = document.getElementById('glyph');
-  var clock  = document.getElementById('clock');
-  var scrub  = document.getElementById('scrub');
-  var fill   = document.getElementById('scrubFill');
-  var notice = document.getElementById('notice');
-  var dl     = document.getElementById('dl');
-
-  audio.src = AUDIO_SRC;
-  dl.href = AUDIO_SRC;
-
-  var R = 120;
-  var C = 2 * Math.PI * R;
-  arc.style.strokeDasharray = C;
-  arc.style.strokeDashoffset = C;
-
-  var PLAY  = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>';
-  var PAUSE = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5h3.5v15H7zM13.5 4.5H17v15h-3.5z"/></svg>';
-
-  function fmt(s) {
-    if (!isFinite(s) || s < 0) return '--:--';
-    var m = Math.floor(s / 60);
-    var r = Math.floor(s % 60);
-    return m + ':' + (r < 10 ? '0' : '') + r;
-  }
-
-  function paint() {
-    var d = audio.duration;
-    var p = (isFinite(d) && d > 0) ? (audio.currentTime / d) : 0;
-    arc.style.strokeDashoffset = C * (1 - p);
-    fill.style.width = (p * 100) + '%';
-    clock.textContent = fmt(audio.currentTime) + ' / ' + fmt(d);
-  }
-
-  function toggle() {
-    if (audio.paused) {
-      var r = audio.play();
-      if (r && r.catch) { r.catch(function () { notice.hidden = false; }); }
-    } else {
-      audio.pause();
-    }
-  }
-
-  dial.addEventListener('click', toggle);
-
-  audio.addEventListener('play', function () {
-    dial.dataset.state = 'playing';
-    dial.setAttribute('aria-label', 'Pause');
-    dial.setAttribute('aria-pressed', 'true');
-    glyph.innerHTML = PAUSE;
-  });
-
-  audio.addEventListener('pause', function () {
-    dial.dataset.state = 'paused';
-    dial.setAttribute('aria-label', 'Play');
-    dial.setAttribute('aria-pressed', 'false');
-    glyph.innerHTML = PLAY;
-  });
-
-  audio.addEventListener('loadedmetadata', paint);
-  audio.addEventListener('timeupdate', paint);
-  audio.addEventListener('ended', function () { audio.currentTime = 0; paint(); });
-  audio.addEventListener('error', function () { notice.hidden = false; });
-
-  // Pointer events cover mouse and touch, so dragging the
-  // scrub line works on a phone as well as clicking on desktop.
-  function seek(clientX) {
-    if (!isFinite(audio.duration) || audio.duration <= 0) return;
-    var box = scrub.getBoundingClientRect();
-    var x = (clientX - box.left) / box.width;
-    audio.currentTime = Math.min(Math.max(x, 0), 1) * audio.duration;
-    paint();
-  }
-
-  var dragging = false;
-  scrub.addEventListener('pointerdown', function (e) {
-    dragging = true;
-    scrub.setPointerCapture(e.pointerId);
-    seek(e.clientX);
-  });
-  scrub.addEventListener('pointermove', function (e) {
-    if (dragging) { seek(e.clientX); }
-  });
-  scrub.addEventListener('pointerup', function (e) {
-    dragging = false;
-    if (scrub.hasPointerCapture(e.pointerId)) { scrub.releasePointerCapture(e.pointerId); }
-  });
-  scrub.addEventListener('pointercancel', function () { dragging = false; });
-
-  document.addEventListener('keydown', function (e) {
-    if (e.target && /^(INPUT|TEXTAREA)$/.test(e.target.tagName)) return;
-    if (e.code === 'Space' || e.key === ' ') { e.preventDefault(); toggle(); }
-    if (e.key === 'ArrowRight') { audio.currentTime = Math.min(audio.currentTime + 10, audio.duration || 0); paint(); }
-    if (e.key === 'ArrowLeft')  { audio.currentTime = Math.max(audio.currentTime - 10, 0); paint(); }
-  });
-
-  paint();
-})();
-</script>
+  </main>
 
 </body>
+
 </html>
